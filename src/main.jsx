@@ -6,6 +6,8 @@ import './index.css'
 import Home from './pages/Home.jsx'
 import Settings from './pages/Settings.jsx'
 import About from './pages/About.jsx'
+import NewsDetail from './pages/NewsDetail.jsx'
+import NewsListBySource from './pages/NewsListBySource.jsx'
 
 // HashRouter is needed for GitHub pages
 createRoot(document.getElementById('root')).render(
@@ -13,6 +15,8 @@ createRoot(document.getElementById('root')).render(
     <HashRouter basename='' hashType='noslash'>
       <Routes>
         <Route index element={<Home />} />
+        <Route path='source/:sourceId' element={<NewsListBySource />} />
+        <Route path='news/:id' element={<NewsDetail />} />
         <Route path='settings' element={<Settings />} />
         <Route path='about' element={<About />} />
       </Routes>

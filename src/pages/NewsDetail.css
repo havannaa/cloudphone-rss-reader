@@ -1,0 +1,88 @@
+:root {
+  --color-tech: #a855f7;
+  --color-science: #06b6d4;
+  --color-finance: #10b981;
+  --color-world: #3b82f6;
+  --color-health: #ef4444;
+}
+
+.article-container {
+  padding: 38px 10px 10px 10px !important; /* Extra top padding to clear header */
+  margin: 0 !important;
+  color: #e2e8f0;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.article-badge {
+  font-size: 9.5pt;
+  font-weight: bold;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.article-date {
+  font-size: 10.5pt;
+  color: #94a3b8;
+}
+
+.article-title {
+  font-size: 14.5pt !important;
+  font-weight: 700;
+  color: white;
+  line-height: 1.3;
+  margin: 6px 0 10px 0;
+}
+
+.article-summary {
+  font-size: 11.5pt !important;
+  color: #cbd5e1;
+  font-style: italic;
+  border-left: 2px solid #475569;
+  padding-left: 8px;
+  margin: 8px 0 12px 0;
+}
+
+.article-content {
+  font-size: 11.5pt;
+  color: #e2e8f0;
+  margin-top: 10px;
+  padding-bottom: 30px; /* Space to scroll past footer */
+}
+
+/* Adjust for small QVGA screens */
+@media only screen and (max-width: 240px) {
+  .article-title {
+    font-size: 13.5pt !important;
+  }
+  .article-summary {
+    font-size: 11pt !important;
+  }
+  .article-content {
+    font-size: 11pt;
+  }
+}
+
+.detail-image-container {
+  width: 100%;
+  max-height: 120px;
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  background: #1e293b;
+}
+
+.detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

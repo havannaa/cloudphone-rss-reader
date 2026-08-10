@@ -5,6 +5,7 @@
   overflow: hidden;
   background: black;
   color: white;
+  filter: grayscale(100%) brightness(25%);
 }
 
 #app {
@@ -45,4 +46,155 @@ p {
     padding: 20px 4pt;
     margin: 4pt 0;
   }
+}
+
+/* News App specific styles */
+.section-title {
+  font-size: 12.5pt !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 4px;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.news-card {
+  display: block;
+  text-decoration: none;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  padding: 8px;
+  color: #cbd5e1;
+  transition: all 0.2s ease;
+  text-align: start;
+}
+
+.news-card.focused,
+.news-card:focus {
+  background: #1e293b;
+  border-color: #1971e6;
+  color: white;
+  outline: none;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.card-badge {
+  font-size: 8.5pt;
+  font-weight: bold;
+  color: white;
+  padding: 1px 4px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.badge-tech { background-color: #a855f7; }
+.badge-science { background-color: #06b6d4; }
+.badge-finance { background-color: #10b981; }
+.badge-world { background-color: #3b82f6; }
+.badge-health { background-color: #ef4444; }
+
+.card-date {
+  font-size: 9.5pt;
+  color: #64748b;
+}
+
+.card-title {
+  font-size: 11.5pt;
+  font-weight: bold;
+  margin: 2px 0;
+  color: white;
+  line-height: 1.2;
+}
+
+.card-desc {
+  font-size: 10pt;
+  color: #94a3b8;
+  margin: 2px 0 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Pagination Bar */
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding: 8px 0 45px 0; /* padding at bottom to clear SoftKeyBar */
+  border-top: 1px solid #1e293b;
+}
+
+.page-indicator {
+  font-size: 10.5pt;
+  color: #64748b;
+}
+
+.pagination-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.pagination-btn {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  color: white;
+  padding: 4px 10px;
+  font-size: 10.5pt;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination-btn.focused,
+.pagination-btn:focus {
+  background: #1971e6;
+  border-color: #1971e6;
+  outline: none;
+}
+
+/* Image preview containers for feed cards */
+.card-image-container {
+  width: 100%;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  background: #1e293b;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Spinner for loading state */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #1971e6;
+  animation: spin 0.8s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
