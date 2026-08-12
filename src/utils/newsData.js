@@ -7,6 +7,8 @@ export const newsSources = [
   { id: "amarbanglabd", name: "Amar Bangla BD", url: "https://www.amarbanglabd.com/feeds", country: "Bangladesh" },
   { id: "banglatribune", name: "Bangla Tribune", url: "https://www.banglatribune.com/feed/", country: "Bangladesh" },
   { id: "ekattor", name: "Ekattor TV", url: "https://ekattor.tv/feed/", country: "Bangladesh" },
+  { id: "gnews_bangladesh", name: "Google News Bangladesh", url: "https://news.google.com/rss/search?q=Bangladesh", country: "Bangladesh" },
+  { id: "gnews_kushtia", name: "Google News Kushtia", url: "https://news.google.com/rss/search?q=Kushtia", country: "Bangladesh" },
   // India
   { id: "indiatoday", name: "India Today", url: "https://www.indiatoday.in/rss/home", country: "India" },
   // Iran
