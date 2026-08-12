@@ -111,20 +111,28 @@ export async function fetchFeed(sourceId) {
   return articles;
 }
 
-// Utility to parse/format date string
+// Utility to parse/format date string in GMT+6 (Asia/Dhaka)
 function formatDate(dateStr) {
   if (!dateStr) return "";
   try {
     const date = new Date(dateStr);
     if (!isNaN(date.getTime())) {
-      return date.toLocaleDateString(undefined, {
+      const datePart = date.toLocaleDateString("en-US", {
         month: "short",
         day: "numeric",
-        year: "numeric"
+        year: "numeric",
+        timeZone: "Asia/Dhaka"
       });
+      const timePart = date.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+        timeZone: "Asia/Dhaka"
+      });
+      return `${datePart} ${timePart}`;
     }
   } catch (e) {
-    // Ignore and return original
+    // Ignore
   }
   return dateStr;
 }
