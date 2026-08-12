@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate, Link, useLocation } from 'react-router'
-import { newsSources } from '../utils/newsData'
+import { newsSources, fetchFeed } from '../utils/newsData'
 import Header from '../components/Header'
 import SoftKeyBar from '../components/SoftKeyBar'
 import OptionsMenu from '../components/OptionsMenu'
@@ -16,18 +16,13 @@ function NewsListBySource() {
 
   const source = newsSources.find(s => s.id === sourceId);
 
-  // Load articles synchronously from preloaded sessionStorage cache
-  const allArticles = JSON.parse(sessionStorage.getItem('all_articles') || '{}');
-  const articles = allArticles[sourceId] || [];
-
-  // Redirect back to home if preloaded cache is missing (e.g. direct deep link entry)
-  useEffect(() => {
-    if (!sessionStorage.getItem('all_articles')) {
-      navigate('/');
-    }
-  }, [navigate]);
-
   // States
+  const [articles, setArticles] = useState(() => {
+    const cached = JSON.parse(sessionStorage.getItem('all_articles') || '{}');
+    return cached[sourceId] || [];
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [menuVisible, setMenuVisible] = useState(location.hash.includes('#menu'));
   const [page, setPage] = useState(() => Number(sessionStorage.getItem(`news_page_${sourceId}`) || 0));
   const [focusedIndex, setFocusedIndex] = useState(() => Number(sessionStorage.getItem(`news_focus_${sourceId}`) || 0));
@@ -36,6 +31,51 @@ function NewsListBySource() {
   useEffect(() => {
     setPage(Number(sessionStorage.getItem(`news_page_${sourceId}`) || 0));
     setFocusedIndex(Number(sessionStorage.getItem(`news_focus_${sourceId}`) || 0));
+  }, [sourceId]);
+
+  const fetchSourceFeed = async (forceRefetch = false) => {
+    setLoading(true);
+    setError(null);
+
+    const cachedArticles = JSON.parse(sessionStorage.getItem('all_articles') || '{}');
+    const cachedErrors = JSON.parse(sessionStorage.getItem('all_errors') || '{}');
+
+    if (forceRefetch) {
+      delete cachedArticles[sourceId];
+      delete cachedErrors[sourceId];
+      sessionStorage.setItem('all_articles', JSON.stringify(cachedArticles));
+      sessionStorage.setItem('all_errors', JSON.stringify(cachedErrors));
+    }
+
+    if (!forceRefetch && cachedArticles[sourceId] && cachedArticles[sourceId].length > 0) {
+      setArticles(cachedArticles[sourceId]);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const data = await fetchFeed(sourceId);
+      cachedArticles[sourceId] = data;
+      delete cachedErrors[sourceId];
+      sessionStorage.setItem('all_articles', JSON.stringify(cachedArticles));
+      sessionStorage.setItem('all_errors', JSON.stringify(cachedErrors));
+      setArticles(data);
+      // Update active_articles navigation cache
+      sessionStorage.setItem('active_articles', JSON.stringify(data));
+    } catch (err) {
+      console.error(err);
+      cachedErrors[sourceId] = err.message;
+      cachedArticles[sourceId] = [];
+      sessionStorage.setItem('all_articles', JSON.stringify(cachedArticles));
+      sessionStorage.setItem('all_errors', JSON.stringify(cachedErrors));
+      setError(err.message);
+      setArticles([]);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchSourceFeed(false);
   }, [sourceId]);
 
   const itemsPerPage = 5;
@@ -53,7 +93,7 @@ function NewsListBySource() {
   };
 
   const handleKeyDown = (e) => {
-    if (menuVisible) return;
+    if (menuVisible || loading) return;
 
     const focusables = containerRef.current?.querySelectorAll('.focusable-item') || [];
     if (!focusables.length) return;
@@ -82,14 +122,20 @@ function NewsListBySource() {
         setFocusedIndex(0);
         sessionStorage.setItem(`news_focus_${sourceId}`, 0);
         break;
+      case '3':
+        e.preventDefault();
+        // Clear and refetch this source feed only
+        fetchSourceFeed(true);
+        break;
       case '4':
         e.preventDefault();
         {
+          const allArticlesCache = JSON.parse(sessionStorage.getItem('all_articles') || '{}');
           const currentIndex = newsSources.findIndex(s => s.id === sourceId);
           if (currentIndex !== -1) {
             const prevIndex = (currentIndex - 1 + newsSources.length) % newsSources.length;
             const prevSource = newsSources[prevIndex];
-            const prevArticles = allArticles[prevSource.id] || [];
+            const prevArticles = allArticlesCache[prevSource.id] || [];
             sessionStorage.setItem('active_articles', JSON.stringify(prevArticles));
             navigate(`/source/${prevSource.id}`, { replace: true });
           }
@@ -98,11 +144,12 @@ function NewsListBySource() {
       case '6':
         e.preventDefault();
         {
+          const allArticlesCache = JSON.parse(sessionStorage.getItem('all_articles') || '{}');
           const currentIndex = newsSources.findIndex(s => s.id === sourceId);
           if (currentIndex !== -1) {
             const nextIndex = (currentIndex + 1) % newsSources.length;
             const nextSource = newsSources[nextIndex];
-            const nextArticles = allArticles[nextSource.id] || [];
+            const nextArticles = allArticlesCache[nextSource.id] || [];
             sessionStorage.setItem('active_articles', JSON.stringify(nextArticles));
             navigate(`/source/${nextSource.id}`, { replace: true });
           }
@@ -129,7 +176,11 @@ function NewsListBySource() {
         break;
       case '0':
         e.preventDefault();
-        navigate('/');
+        if (source) {
+          navigate(`/category/${encodeURIComponent(source.country)}`);
+        } else {
+          navigate('/');
+        }
         break;
     }
   };
@@ -151,7 +202,11 @@ function NewsListBySource() {
         }
         break;
       case 'end':
-        navigate('/');
+        if (source) {
+          navigate(`/category/${encodeURIComponent(source.country)}`);
+        } else {
+          navigate('/');
+        }
         break;
     }
   };
@@ -162,12 +217,12 @@ function NewsListBySource() {
   });
 
   useEffect(() => {
-    if (menuVisible) return;
+    if (menuVisible || loading) return;
     const focusables = containerRef.current?.querySelectorAll('.focusable-item') || [];
     if (focusables[focusedIndex]) {
       focusables[focusedIndex].focus();
     }
-  }, [focusedIndex, page, menuVisible]);
+  }, [focusedIndex, page, menuVisible, loading]);
 
   useEffect(() => {
     setMenuVisible(location.hash.includes('#menu'));
@@ -192,7 +247,16 @@ function NewsListBySource() {
       <section id="app" ref={containerRef}>
         <h2 className="section-title">{source.name} {t('Feed')}</h2>
 
-        {articles.length === 0 ? (
+        {loading ? (
+          <div style={{ padding: '40px 10px', textAlign: 'center', color: '#94a3b8', fontSize: '10pt' }}>
+            <div className="spinner" style={{ marginBottom: '12px' }}></div>
+            {t('Fetching latest feed...')}
+          </div>
+        ) : error ? (
+          <div style={{ padding: '20px 10px', color: '#ef4444', fontSize: '9.5pt', textAlign: 'center' }}>
+            {error}
+          </div>
+        ) : articles.length === 0 ? (
           <div style={{ padding: '20px 10px', textAlign: 'center', color: '#ef4444', fontSize: '9.5pt' }}>
             {t('No articles available or feed offline.')}
           </div>

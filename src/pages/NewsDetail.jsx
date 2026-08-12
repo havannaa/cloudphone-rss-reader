@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import SoftKeyBar from '../components/SoftKeyBar'
 import { autoFocus } from '../utils/focus'
 import { t } from 'i18next'
+import { fetchFeed } from '../utils/newsData'
 import './Home.css' // Reuse general app container layout
 import './NewsDetail.css'
 
@@ -139,6 +140,106 @@ function NewsDetail() {
     };
   }, [article, articles]);
 
+  const refetchArticle = async () => {
+    if (!article) return;
+    setLoading(true);
+    setError(null);
+
+    // Clear source caches
+    const cachedArticles = JSON.parse(sessionStorage.getItem('all_articles') || '{}');
+    const cachedErrors = JSON.parse(sessionStorage.getItem('all_errors') || '{}');
+    delete cachedArticles[article.sourceId];
+    delete cachedErrors[article.sourceId];
+    sessionStorage.setItem('all_articles', JSON.stringify(cachedArticles));
+    sessionStorage.setItem('all_errors', JSON.stringify(cachedErrors));
+
+    try {
+      // 1. Fetch RSS feed again
+      const data = await fetchFeed(article.sourceId);
+      
+      // Update caches
+      cachedArticles[article.sourceId] = data;
+      sessionStorage.setItem('all_articles', JSON.stringify(cachedArticles));
+      sessionStorage.setItem('active_articles', JSON.stringify(data));
+
+      // 2. Find the matching article
+      const updatedArticle = data.find(a => a.link === article.link) || data.find(a => a.id === article.id);
+
+      if (updatedArticle) {
+        // If it is a dynamic source, fetch the full body again
+        const dynamicSources = ['ittefaq', 'banglatribune', 'ekattor'];
+        if (dynamicSources.includes(updatedArticle.sourceId)) {
+          const CORS_PROXIES = [
+            "/api/rss?url=",
+            "https://api.allorigins.win/raw?url=",
+            "https://corsproxy.io/?url="
+          ];
+
+          let htmlText = "";
+          let errorMsg = "";
+
+          for (const proxy of CORS_PROXIES) {
+            try {
+              const targetUrl = proxy.startsWith("/")
+                ? window.location.origin + proxy + encodeURIComponent(updatedArticle.link)
+                : proxy + encodeURIComponent(updatedArticle.link);
+
+              const response = await fetch(targetUrl);
+              if (response.ok) {
+                htmlText = await response.text();
+                break;
+              } else {
+                errorMsg = `HTTP status: ${response.status}`;
+              }
+            } catch (e) {
+              errorMsg = e.message;
+            }
+          }
+
+          if (htmlText) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlText, "text/html");
+            let articleBody = null;
+
+            if (updatedArticle.sourceId === 'ittefaq' || updatedArticle.sourceId === 'ekattor') {
+              articleBody = doc.querySelector('article.jw_detail_content_holder div[itemprop="articleBody"]');
+            } else if (updatedArticle.sourceId === 'banglatribune') {
+              articleBody = doc.querySelector('div.viewport.jw_article_body');
+            }
+
+            if (articleBody) {
+              const paragraphs = Array.from(articleBody.querySelectorAll('p'))
+                .map(p => p.textContent.trim())
+                .filter(text => text.length > 0);
+              const fullText = paragraphs.join('\n\n');
+              if (fullText) {
+                updatedArticle.content = fullText;
+                updatedArticle.summary = fullText.length > 150 ? fullText.slice(0, 150) + "..." : fullText;
+              }
+            }
+          }
+        }
+
+        // Save back to caches
+        const masterIndex = data.findIndex(a => a.link === updatedArticle.link || a.id === updatedArticle.id);
+        if (masterIndex !== -1) {
+          data[masterIndex] = updatedArticle;
+          sessionStorage.setItem('active_articles', JSON.stringify(data));
+          cachedArticles[article.sourceId] = data;
+          sessionStorage.setItem('all_articles', JSON.stringify(cachedArticles));
+        }
+
+        setContent(updatedArticle.content || '');
+      } else {
+        setError('Article no longer present in feed.');
+      }
+    } catch (err) {
+      console.error(err);
+      setError(`Failed to refresh feed: ${err.message}`);
+    }
+    setLoading(false);
+  };
+
   const onSoftKeyClick = (position) => {
     switch (position) {
       case 'end':
@@ -167,6 +268,11 @@ function NewsDetail() {
         if (container) {
           container.scrollTop = 0;
         }
+        break;
+      case '3':
+        e.preventDefault();
+        // Clear cache and refetch this source feed only from detail page
+        refetchArticle();
         break;
       case '4':
         e.preventDefault();

@@ -8,6 +8,7 @@ import Settings from './pages/Settings.jsx'
 import About from './pages/About.jsx'
 import NewsDetail from './pages/NewsDetail.jsx'
 import NewsListBySource from './pages/NewsListBySource.jsx'
+import Category from './pages/Category.jsx'
 
 // Initialize brightness and grayscale theme from sessionStorage on startup
 const brightness = sessionStorage.getItem('brightness_level') || '20';
@@ -32,12 +33,6 @@ window.addEventListener('keydown', (e) => {
     const nextLevel = levels[nextIndex];
     sessionStorage.setItem('brightness_level', nextLevel);
     document.documentElement.style.setProperty('--app-brightness', `${nextLevel}%`);
-  } else if (e.key === '3') {
-    e.preventDefault();
-    // Force refresh: clear session cache and reload/navigate to home
-    sessionStorage.removeItem('all_articles');
-    sessionStorage.removeItem('all_errors');
-    window.location.href = window.location.origin + window.location.pathname; // Hard redirect to home route
   }
 });
 
@@ -47,6 +42,7 @@ createRoot(document.getElementById('root')).render(
     <HashRouter basename='' hashType='noslash'>
       <Routes>
         <Route index element={<Home />} />
+        <Route path='category/:country' element={<Category />} />
         <Route path='source/:sourceId' element={<NewsListBySource />} />
         <Route path='news/:id' element={<NewsDetail />} />
         <Route path='settings' element={<Settings />} />
