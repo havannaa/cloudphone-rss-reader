@@ -5,7 +5,8 @@ export const newsSources = [
   { id: "bd24live", name: "BD24Live", url: "https://www.bd24live.com/feed/" },
   { id: "aljazeera", name: "Al Jazeera", url: "https://www.aljazeera.com/xml/rss/all.xml" },
   { id: "indiatoday", name: "India Today", url: "https://www.indiatoday.in/rss/home" },
-  { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml" }
+  { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml" },
+  { id: "ittefaq", name: "Daily Ittefaq", url: "https://www.ittefaq.com.bd/feed/" }
 ];
 
 const CORS_PROXIES = [

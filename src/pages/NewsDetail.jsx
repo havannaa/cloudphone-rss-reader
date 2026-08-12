@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import Header from '../components/Header'
 import SoftKeyBar from '../components/SoftKeyBar'
@@ -14,6 +14,110 @@ function NewsDetail() {
   // Load dynamic articles from session storage cache
   const articles = JSON.parse(sessionStorage.getItem('active_articles') || '[]');
   const article = articles.find((a) => a.id === parseInt(id, 10));
+
+  // States for fetching full article body (needed for Daily Ittefaq where RSS feed has no text description)
+  const [content, setContent] = useState(article ? article.content : '');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!article || article.sourceId !== 'ittefaq') return;
+    
+    // If we already have the crawled body (longer than 20 chars), skip network fetch
+    if (article.content && article.content.trim().length > 20) {
+      setContent(article.content);
+      return;
+    }
+
+    let active = true;
+    setLoading(true);
+
+    const fetchIttefaqContent = async () => {
+      const CORS_PROXIES = [
+        "/api/rss?url=",
+        "https://api.allorigins.win/raw?url=",
+        "https://corsproxy.io/?url="
+      ];
+
+      let htmlText = "";
+      let errorMsg = "";
+
+      for (const proxy of CORS_PROXIES) {
+        try {
+          const targetUrl = proxy.startsWith("/")
+            ? window.location.origin + proxy + encodeURIComponent(article.link)
+            : proxy + encodeURIComponent(article.link);
+
+          const response = await fetch(targetUrl);
+          if (response.ok) {
+            htmlText = await response.text();
+            break;
+          } else {
+            errorMsg = `HTTP status: ${response.status}`;
+          }
+        } catch (e) {
+          errorMsg = e.message;
+        }
+      }
+
+      if (!active) return;
+
+      if (!htmlText) {
+        setError(`Failed to load article details: ${errorMsg}`);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, "text/html");
+        
+        // Find article body tag like in the user's Python scraping script:
+        // article_tag = sp_soup.find('article', class_='jw_detail_content_holder')
+        // article_body = article_tag.find('div', itemprop='articleBody')
+        const articleBody = doc.querySelector('article.jw_detail_content_holder div[itemprop="articleBody"]');
+        
+        if (articleBody) {
+          const paragraphs = Array.from(articleBody.querySelectorAll('p'))
+            .map(p => p.textContent.trim())
+            .filter(text => text.length > 0);
+            
+          const fullText = paragraphs.join('\n\n');
+          if (fullText) {
+            // Save back into session storage cache
+            article.content = fullText;
+            article.summary = fullText.length > 150 ? fullText.slice(0, 150) + "..." : fullText;
+            sessionStorage.setItem('active_articles', JSON.stringify(articles));
+
+            // Update articles list in the master 'all_articles' map as well
+            const allArticles = JSON.parse(sessionStorage.getItem('all_articles') || '{}');
+            if (allArticles['ittefaq']) {
+              const masterIndex = allArticles['ittefaq'].findIndex(a => a.id === article.id);
+              if (masterIndex !== -1) {
+                allArticles['ittefaq'][masterIndex] = article;
+                sessionStorage.setItem('all_articles', JSON.stringify(allArticles));
+              }
+            }
+
+            setContent(fullText);
+          } else {
+            setContent("Article content is empty.");
+          }
+        } else {
+          setContent("Article body structure not found on page.");
+        }
+      } catch (err) {
+        setError(`Error parsing article: ${err.message}`);
+      }
+      setLoading(false);
+    };
+
+    fetchIttefaqContent();
+
+    return () => {
+      active = false;
+    };
+  }, [article, articles]);
 
   const onSoftKeyClick = (position) => {
     switch (position) {
@@ -101,13 +205,24 @@ function NewsDetail() {
 
         <h2 className="article-title">{article.id}. {article.title}</h2>
         
-        {article.summary && article.summary !== article.content && (
+        {article.summary && article.summary !== content && (
           <p className="article-summary">{article.summary}</p>
         )}
         
-        <div className="article-content">
-          {article.content}
-        </div>
+        {loading ? (
+          <div style={{ padding: '30px 10px', textAlign: 'center', color: '#94a3b8', fontSize: '10pt' }}>
+            <div className="spinner" style={{ marginBottom: '12px' }}></div>
+            {t('Fetching full article body...')}
+          </div>
+        ) : error ? (
+          <div style={{ padding: '20px 10px', color: '#ef4444', fontSize: '9.5pt', textAlign: 'center' }}>
+            {error}
+          </div>
+        ) : (
+          <div className="article-content">
+            {content}
+          </div>
+        )}
       </section>
 
       <SoftKeyBar
