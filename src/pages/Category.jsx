@@ -43,10 +43,14 @@ function CategoryPage() {
       sessionStorage.setItem('all_errors', JSON.stringify(currentErrors));
     }
 
-    const sourcesToFetch = forceRefetch 
-      ? categorySources 
-      : categorySources.filter(source => !currentArticles[source.id]);
+    if (!forceRefetch) {
+      setArticlesMap(currentArticles);
+      setErrorsMap(currentErrors);
+      setLoading(false);
+      return;
+    }
 
+    const sourcesToFetch = categorySources;
     if (sourcesToFetch.length === 0) {
       setLoading(false);
       return;
@@ -81,13 +85,7 @@ function CategoryPage() {
   };
 
   useEffect(() => {
-    // Check if we need to load feeds on mount
-    const cachedArticles = JSON.parse(sessionStorage.getItem('all_articles') || '{}');
-    const missingFeeds = categorySources.some(source => !cachedArticles[source.id]);
-    
-    if (missingFeeds) {
-      preloadCategoryFeeds(false);
-    }
+    preloadCategoryFeeds(false);
   }, [country]);
 
   const onSoftKeyClick = (position) => {

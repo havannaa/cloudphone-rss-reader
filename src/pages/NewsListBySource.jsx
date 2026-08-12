@@ -47,8 +47,9 @@ function NewsListBySource() {
       sessionStorage.setItem('all_errors', JSON.stringify(cachedErrors));
     }
 
-    if (!forceRefetch && cachedArticles[sourceId] && cachedArticles[sourceId].length > 0) {
-      setArticles(cachedArticles[sourceId]);
+    if (!forceRefetch) {
+      setArticles(cachedArticles[sourceId] || []);
+      setError(cachedErrors[sourceId] || null);
       setLoading(false);
       return;
     }
