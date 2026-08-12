@@ -9,7 +9,7 @@ import { withTranslation } from 'react-i18next'
 import { newsSources, fetchFeed } from '../utils/newsData'
 import './Home.css'
 
-const categoriesList = ['Bangladesh', 'India', 'Middle East', 'World News'];
+const categoriesList = ['Bangladesh', 'India', 'Middle East', 'World News', 'YouTube'];
 
 function AppComponent() {
   const navigate = useNavigate();
@@ -176,12 +176,12 @@ function AppComponent() {
         ) : (
           <div className="news-list">
             {categoriesList.map((country, idx) => {
-              // Count sources in this category
               const count = newsSources.filter(s => s.country === country).length;
+              const isYoutube = country === 'YouTube';
               return (
                 <Link
                   key={country}
-                  to={`/category/${encodeURIComponent(country)}`}
+                  to={isYoutube ? '/youtube' : `/category/${encodeURIComponent(country)}`}
                   className={`news-card focusable-item ${idx === focusedIndex ? 'focused' : ''}`}
                   onClick={() => {
                     sessionStorage.setItem('news_category_focus', idx);
@@ -195,7 +195,7 @@ function AppComponent() {
                     <span style={{ fontSize: '8.5pt', color: '#64748b' }}>➜</span>
                   </div>
                   <span style={{ fontSize: '7.5pt', color: '#64748b', marginTop: '4px', textTransform: 'none' }}>
-                    {count} {t('news sources')}
+                    {isYoutube ? t('Videos placeholder feed') : `${count} ${t('news sources')}`}
                   </span>
                 </Link>
               );
