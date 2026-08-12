@@ -1,15 +1,19 @@
 export const newsSources = [
-  { id: "mehr", name: "Mehr News", url: "https://en.mehrnews.com/rss" },
-  { id: "prothomalo", name: "Prothom Alo", url: "https://www.prothomalo.com/feed/" },
-  { id: "jagonews", name: "Jago News 24", url: "https://www.jagonews24.com/rss/rss.xml" },
-  { id: "bd24live", name: "BD24Live", url: "https://www.bd24live.com/feed/" },
-  { id: "aljazeera", name: "Al Jazeera", url: "https://www.aljazeera.com/xml/rss/all.xml" },
-  { id: "indiatoday", name: "India Today", url: "https://www.indiatoday.in/rss/home" },
-  { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml" },
-  { id: "ittefaq", name: "Daily Ittefaq", url: "https://www.ittefaq.com.bd/feed/" },
-  { id: "amarbanglabd", name: "Amar Bangla BD", url: "https://www.amarbanglabd.com/feeds" },
-  { id: "banglatribune", name: "Bangla Tribune", url: "https://www.banglatribune.com/feed/" },
-  { id: "ekattor", name: "Ekattor TV", url: "https://ekattor.tv/feed/" }
+  // Bangladesh
+  { id: "prothomalo", name: "Prothom Alo", url: "https://www.prothomalo.com/feed/", country: "Bangladesh" },
+  { id: "jagonews", name: "Jago News 24", url: "https://www.jagonews24.com/rss/rss.xml", country: "Bangladesh" },
+  { id: "bd24live", name: "BD24Live", url: "https://www.bd24live.com/feed/", country: "Bangladesh" },
+  { id: "ittefaq", name: "Daily Ittefaq", url: "https://www.ittefaq.com.bd/feed/", country: "Bangladesh" },
+  { id: "amarbanglabd", name: "Amar Bangla BD", url: "https://www.amarbanglabd.com/feeds", country: "Bangladesh" },
+  { id: "banglatribune", name: "Bangla Tribune", url: "https://www.banglatribune.com/feed/", country: "Bangladesh" },
+  { id: "ekattor", name: "Ekattor TV", url: "https://ekattor.tv/feed/", country: "Bangladesh" },
+  // India
+  { id: "indiatoday", name: "India Today", url: "https://www.indiatoday.in/rss/home", country: "India" },
+  // Iran
+  { id: "mehr", name: "Mehr News", url: "https://en.mehrnews.com/rss", country: "Iran" },
+  // World News
+  { id: "aljazeera", name: "Al Jazeera", url: "https://www.aljazeera.com/xml/rss/all.xml", country: "World News" },
+  { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", country: "World News" }
 ];
 
 const CORS_PROXIES = [

@@ -217,36 +217,65 @@ function AppComponent() {
           </div>
         ) : (
           <div className="news-list">
-            {newsSources.map((source, idx) => {
-              const sourceArticles = articlesMap[source.id] || [];
-              const hasError = errorsMap[source.id];
-              const subtitle = hasError 
-                ? t('Offline / Connection timeout') 
-                : `${sourceArticles.length} ${t('articles preloaded')}`;
+            {(() => {
+              let lastCountry = null;
+              return newsSources.map((source, idx) => {
+                const sourceArticles = articlesMap[source.id] || [];
+                const hasError = errorsMap[source.id];
+                const subtitle = hasError 
+                  ? t('Offline / Connection timeout') 
+                  : `${sourceArticles.length} ${t('articles preloaded')}`;
 
-              return (
-                <Link
-                  key={source.id}
-                  to={`/source/${source.id}`}
-                  className={`news-card focusable-item ${idx === focusedIndex ? 'focused' : ''}`}
-                  onClick={() => {
-                    sessionStorage.setItem('news_source_focus', idx);
-                    sessionStorage.setItem('active_articles', JSON.stringify(sourceArticles));
-                  }}
-                  style={{ display: 'flex', flexDirection: 'column', padding: '10px 12px', textDecoration: 'none' }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                    <h3 className="card-title" style={{ fontSize: '10.5pt', margin: 0, fontWeight: 'bold' }}>
-                      {idx + 1}. {source.name}
+                const elements = [];
+                
+                if (source.country !== lastCountry) {
+                  lastCountry = source.country;
+                  elements.push(
+                    <h3 
+                      key={`header-${source.country}`} 
+                      className="category-title" 
+                      style={{ 
+                        fontSize: '9pt', 
+                        color: 'var(--color-primary, #60a5fa)', 
+                        padding: '10px 12px 4px 12px',
+                        margin: '10px 0 2px 0', 
+                        textTransform: 'uppercase', 
+                        letterSpacing: '1px',
+                        borderBottom: '1px solid #1e293b',
+                        fontWeight: 'bold'
+                      }}
+                    >
+                      {t(source.country)}
                     </h3>
-                    <span style={{ fontSize: '8pt', color: '#64748b' }}>➜</span>
-                  </div>
-                  <span style={{ fontSize: '7.5pt', color: hasError ? '#ef4444' : '#64748b', marginTop: '4px', textTransform: 'none' }}>
-                    {subtitle}
-                  </span>
-                </Link>
-              );
-            })}
+                  );
+                }
+
+                elements.push(
+                  <Link
+                    key={source.id}
+                    to={`/source/${source.id}`}
+                    className={`news-card focusable-item ${idx === focusedIndex ? 'focused' : ''}`}
+                    onClick={() => {
+                      sessionStorage.setItem('news_source_focus', idx);
+                      sessionStorage.setItem('active_articles', JSON.stringify(sourceArticles));
+                    }}
+                    style={{ display: 'flex', flexDirection: 'column', padding: '10px 12px', textDecoration: 'none' }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                      <h3 className="card-title" style={{ fontSize: '10.5pt', margin: 0, fontWeight: 'bold' }}>
+                        {idx + 1}. {source.name}
+                      </h3>
+                      <span style={{ fontSize: '8pt', color: '#64748b' }}>➜</span>
+                    </div>
+                    <span style={{ fontSize: '7.5pt', color: hasError ? '#ef4444' : '#64748b', marginTop: '4px', textTransform: 'none' }}>
+                      {subtitle}
+                    </span>
+                  </Link>
+                );
+
+                return elements;
+              });
+            })()}
           </div>
         )}
       </section>
