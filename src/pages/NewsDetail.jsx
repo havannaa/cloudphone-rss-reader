@@ -35,7 +35,9 @@ function NewsDetail() {
   }, [id, article]);
 
   useEffect(() => {
-    if (!article || article.sourceId !== 'ittefaq') return;
+    if (!article) return;
+    const dynamicSources = ['ittefaq', 'banglatribune'];
+    if (!dynamicSources.includes(article.sourceId)) return;
     
     // If we already have the crawled body (longer than 20 chars), skip network fetch
     if (article.content && article.content.trim().length > 20) {
@@ -46,7 +48,7 @@ function NewsDetail() {
     let active = true;
     setLoading(true);
 
-    const fetchIttefaqContent = async () => {
+    const fetchDetailContent = async () => {
       const CORS_PROXIES = [
         "/api/rss?url=",
         "https://api.allorigins.win/raw?url=",
@@ -86,10 +88,15 @@ function NewsDetail() {
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlText, "text/html");
         
-        // Find article body tag like in the user's Python scraping script:
-        // article_tag = sp_soup.find('article', class_='jw_detail_content_holder')
-        // article_body = article_tag.find('div', itemprop='articleBody')
-        const articleBody = doc.querySelector('article.jw_detail_content_holder div[itemprop="articleBody"]');
+        let articleBody = null;
+        if (article.sourceId === 'ittefaq') {
+          // Ittefaq element selectors from Python scraper
+          articleBody = doc.querySelector('article.jw_detail_content_holder div[itemprop="articleBody"]');
+        } else if (article.sourceId === 'banglatribune') {
+          // Bangla Tribune selectors from Python scraper:
+          // article_tag = sp_soup.find('div', class_='viewport jw_article_body')
+          articleBody = doc.querySelector('div.viewport.jw_article_body');
+        }
         
         if (articleBody) {
           const paragraphs = Array.from(articleBody.querySelectorAll('p'))
@@ -105,10 +112,10 @@ function NewsDetail() {
 
             // Update articles list in the master 'all_articles' map as well
             const allArticles = JSON.parse(sessionStorage.getItem('all_articles') || '{}');
-            if (allArticles['ittefaq']) {
-              const masterIndex = allArticles['ittefaq'].findIndex(a => a.id === article.id);
+            if (allArticles[article.sourceId]) {
+              const masterIndex = allArticles[article.sourceId].findIndex(a => a.id === article.id);
               if (masterIndex !== -1) {
-                allArticles['ittefaq'][masterIndex] = article;
+                allArticles[article.sourceId][masterIndex] = article;
                 sessionStorage.setItem('all_articles', JSON.stringify(allArticles));
               }
             }
@@ -126,7 +133,7 @@ function NewsDetail() {
       setLoading(false);
     };
 
-    fetchIttefaqContent();
+    fetchDetailContent();
 
     return () => {
       active = false;

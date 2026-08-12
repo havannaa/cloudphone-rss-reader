@@ -7,7 +7,8 @@ export const newsSources = [
   { id: "indiatoday", name: "India Today", url: "https://www.indiatoday.in/rss/home" },
   { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml" },
   { id: "ittefaq", name: "Daily Ittefaq", url: "https://www.ittefaq.com.bd/feed/" },
-  { id: "amarbanglabd", name: "Amar Bangla BD", url: "https://www.amarbanglabd.com/feeds" }
+  { id: "amarbanglabd", name: "Amar Bangla BD", url: "https://www.amarbanglabd.com/feeds" },
+  { id: "banglatribune", name: "Bangla Tribune", url: "https://www.banglatribune.com/feed/" }
 ];
 
 const CORS_PROXIES = [
