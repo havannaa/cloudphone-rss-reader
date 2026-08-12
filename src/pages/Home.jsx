@@ -18,7 +18,7 @@ function AppComponent() {
 
   // States
   const [menuVisible, setMenuVisible] = useState(location.hash.includes('#menu'));
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(() => !sessionStorage.getItem('all_articles'));
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [focusedIndex, setFocusedIndex] = useState(() => Number(sessionStorage.getItem('news_category_focus') || 0));
 
@@ -120,6 +120,12 @@ function AppComponent() {
     sessionStorage.setItem('all_errors', JSON.stringify(newErrorsMap));
     setLoading(false);
   };
+
+  useEffect(() => {
+    if (!sessionStorage.getItem('all_articles')) {
+      preloadAllFeeds();
+    }
+  }, []);
 
   const onMenuItemSelected = () => setMenuVisible(false);
 
