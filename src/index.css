@@ -55,3 +55,78 @@ button[role='menuitem'] .title {
 button[role='menuitem'] .description {
   font-size: 10pt;
 }
+
+/* Brightness Slider Overlay */
+.brightness-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.brightness-modal {
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 200px;
+  padding: 12px 14px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: fadeInModal 0.15s ease-out;
+}
+
+@keyframes fadeInModal {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.brightness-title {
+  margin: 0 0 10px 0;
+  font-size: 11pt;
+  font-weight: bold;
+  color: #f1f5f9;
+  letter-spacing: 0.5px;
+}
+
+.brightness-track {
+  width: 100%;
+  height: 8px;
+  background: #334155;
+  border-radius: 4px;
+  position: relative;
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+.brightness-fill {
+  height: 100%;
+  background: #3b82f6;
+  border-radius: 4px;
+  transition: width 0.1s ease-out;
+}
+
+.brightness-value {
+  font-size: 13pt;
+  font-weight: bold;
+  color: #3b82f6;
+  margin-top: 6px;
+}
+
+.brightness-instructions {
+  font-size: 7.5pt;
+  color: #94a3b8;
+  margin-top: 8px;
+}
