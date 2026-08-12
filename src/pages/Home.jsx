@@ -16,14 +16,61 @@ function AppComponent() {
 
   // States
   const [menuVisible, setMenuVisible] = useState(location.hash.includes('#menu'));
-  const [loading, setLoading] = useState(() => !sessionStorage.getItem('all_articles'));
-  const [articlesMap, setArticlesMap] = useState(() => JSON.parse(sessionStorage.getItem('all_articles') || '{}'));
-  const [errorsMap, setErrorsMap] = useState(() => JSON.parse(sessionStorage.getItem('all_errors') || '{}'));
+  const [loading, setLoading] = useState(() => {
+    const cached = sessionStorage.getItem('all_articles');
+    if (!cached) return true;
+    try {
+      const parsed = JSON.parse(cached);
+      return Object.keys(parsed).length !== newsSources.length;
+    } catch (e) {
+      return true;
+    }
+  });
+  const [articlesMap, setArticlesMap] = useState(() => {
+    const cached = sessionStorage.getItem('all_articles');
+    if (!cached) return {};
+    try {
+      const parsed = JSON.parse(cached);
+      if (Object.keys(parsed).length === newsSources.length) {
+        return parsed;
+      }
+    } catch (e) {
+      // Ignore
+    }
+    return {};
+  });
+  const [errorsMap, setErrorsMap] = useState(() => {
+    const cached = sessionStorage.getItem('all_errors');
+    if (!cached) return {};
+    try {
+      const parsed = JSON.parse(cached);
+      const cachedArticles = sessionStorage.getItem('all_articles');
+      if (cachedArticles) {
+        const parsedArticles = JSON.parse(cachedArticles);
+        if (Object.keys(parsedArticles).length === newsSources.length) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      // Ignore
+    }
+    return {};
+  });
   const [focusedIndex, setFocusedIndex] = useState(() => Number(sessionStorage.getItem('news_source_focus') || 0));
 
   // Preloading RSS feeds in parallel
   useEffect(() => {
-    if (sessionStorage.getItem('all_articles')) return;
+    const cached = sessionStorage.getItem('all_articles');
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        if (Object.keys(parsed).length === newsSources.length) {
+          return;
+        }
+      } catch (e) {
+        // Ignore and force reload
+      }
+    }
 
     let active = true;
     setLoading(true);
