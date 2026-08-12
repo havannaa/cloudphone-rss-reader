@@ -36,7 +36,7 @@ p {
 /* QVGA */
 @media only screen and (min-width: 129px) and (max-width: 240px) {
   #app {
-    padding: 36px 8pt;
+    padding: 24px 8pt;
     margin: 8pt 0;
   }
 

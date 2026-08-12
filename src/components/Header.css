@@ -10,56 +10,38 @@ header {
     overflow: hidden;
     user-select: none;
     z-index: 2;
-    background: black;
-}
-
-header img {
-    margin-inline-end: 0.5em;
-    width: 1em;
-    height: 1em;
-}
-
-header img, header h1 {
-    display: inline-block;
-    vertical-align: middle;
+    background: transparent;
+    height: 28px;
 }
 
 header h1 {
+    display: inline-block;
+    vertical-align: middle;
     margin: 0;
-    font-size: 24pt;
+    font-size: 12pt;
+    line-height: 28px;
 }
 
 /* QVGA */
 @media only screen and (min-width: 129px) and (max-width: 240px) {
-    header img {
-        height: 24pt;
-        width: 24pt;
-    }
-
     header {
-        height: 36px;
+        height: 24px;
     }
 
     header h1 {
-        font-size: 20pt;
-        line-height: 36px;
+        font-size: 11pt;
+        line-height: 24px;
     }
 }
 
 /* QQVGA */
 @media only screen and (max-width: 128px) {
-    header img {
-        height: 12pt;
-        width: 12pt;
-        margin-inline-end: 0.25em;
-    }
-
     header {
         height: 20px;
     }
 
     header h1 {
-        font-size: 11pt;
+        font-size: 10pt;
         line-height: 20px;
     }
 }
