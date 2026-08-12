@@ -138,6 +138,11 @@ function AppComponent() {
           return prevIndex;
         });
         break;
+      case '1':
+        e.preventDefault();
+        setFocusedIndex(0);
+        sessionStorage.setItem('news_source_focus', 0);
+        break;
       case 'Enter':
       case '5':
         e.preventDefault();

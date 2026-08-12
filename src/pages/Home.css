@@ -1,3 +1,7 @@
+:root {
+  --app-brightness: 25%;
+}
+
 #root {
   position: relative;
   width: 100vw;
@@ -5,7 +9,12 @@
   overflow: hidden;
   background: black;
   color: white;
-  filter: grayscale(100%) brightness(25%);
+  filter: grayscale(100%) brightness(var(--app-brightness, 25%));
+  transition: filter 0.2s ease;
+}
+
+body.color-mode #root {
+  filter: grayscale(0%) brightness(var(--app-brightness, 25%));
 }
 
 #app {

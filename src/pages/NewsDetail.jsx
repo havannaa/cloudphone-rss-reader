@@ -20,6 +20,20 @@ function NewsDetail() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Sync content state when article id parameter changes (from keybind article transitions)
+  useEffect(() => {
+    if (article) {
+      setContent(article.content);
+      setError(null);
+      setLoading(false);
+      // Reset scroll position on container
+      const container = document.getElementById('app');
+      if (container) {
+        container.scrollTop = 0;
+      }
+    }
+  }, [id, article]);
+
   useEffect(() => {
     if (!article || article.sourceId !== 'ittefaq') return;
     
@@ -140,6 +154,34 @@ function NewsDetail() {
         e.preventDefault();
         if (container) {
           container.scrollTop += 40;
+        }
+        break;
+      case '1':
+        e.preventDefault();
+        if (container) {
+          container.scrollTop = 0;
+        }
+        break;
+      case '4':
+        e.preventDefault();
+        if (article && articles.length > 0) {
+          const currentIndex = articles.findIndex(a => a.id === article.id);
+          if (currentIndex !== -1) {
+            const prevIndex = (currentIndex - 1 + articles.length) % articles.length;
+            const prevArticle = articles[prevIndex];
+            navigate(`/news/${prevArticle.id}`, { replace: true });
+          }
+        }
+        break;
+      case '6':
+        e.preventDefault();
+        if (article && articles.length > 0) {
+          const currentIndex = articles.findIndex(a => a.id === article.id);
+          if (currentIndex !== -1) {
+            const nextIndex = (currentIndex + 1) % articles.length;
+            const nextArticle = articles[nextIndex];
+            navigate(`/news/${nextArticle.id}`, { replace: true });
+          }
         }
         break;
       case '0':

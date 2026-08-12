@@ -32,6 +32,12 @@ function NewsListBySource() {
   const [page, setPage] = useState(() => Number(sessionStorage.getItem(`news_page_${sourceId}`) || 0));
   const [focusedIndex, setFocusedIndex] = useState(() => Number(sessionStorage.getItem(`news_focus_${sourceId}`) || 0));
 
+  // Sync state if sourceId changes (e.g. from keybind source switching)
+  useEffect(() => {
+    setPage(Number(sessionStorage.getItem(`news_page_${sourceId}`) || 0));
+    setFocusedIndex(Number(sessionStorage.getItem(`news_focus_${sourceId}`) || 0));
+  }, [sourceId]);
+
   const itemsPerPage = 5;
   const totalPages = Math.ceil(articles.length / itemsPerPage) || 1;
   const activeNews = articles.slice(page * itemsPerPage, (page + 1) * itemsPerPage);
@@ -70,6 +76,37 @@ function NewsListBySource() {
           sessionStorage.setItem(`news_focus_${sourceId}`, prevIndex);
           return prevIndex;
         });
+        break;
+      case '1':
+        e.preventDefault();
+        setFocusedIndex(0);
+        sessionStorage.setItem(`news_focus_${sourceId}`, 0);
+        break;
+      case '4':
+        e.preventDefault();
+        {
+          const currentIndex = newsSources.findIndex(s => s.id === sourceId);
+          if (currentIndex !== -1) {
+            const prevIndex = (currentIndex - 1 + newsSources.length) % newsSources.length;
+            const prevSource = newsSources[prevIndex];
+            const prevArticles = allArticles[prevSource.id] || [];
+            sessionStorage.setItem('active_articles', JSON.stringify(prevArticles));
+            navigate(`/source/${prevSource.id}`, { replace: true });
+          }
+        }
+        break;
+      case '6':
+        e.preventDefault();
+        {
+          const currentIndex = newsSources.findIndex(s => s.id === sourceId);
+          if (currentIndex !== -1) {
+            const nextIndex = (currentIndex + 1) % newsSources.length;
+            const nextSource = newsSources[nextIndex];
+            const nextArticles = allArticles[nextSource.id] || [];
+            sessionStorage.setItem('active_articles', JSON.stringify(nextArticles));
+            navigate(`/source/${nextSource.id}`, { replace: true });
+          }
+        }
         break;
       case 'Enter':
       case '5':
