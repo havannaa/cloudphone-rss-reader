@@ -36,7 +36,7 @@ function NewsDetail() {
 
   useEffect(() => {
     if (!article) return;
-    const dynamicSources = ['ittefaq', 'banglatribune'];
+    const dynamicSources = ['ittefaq', 'banglatribune', 'ekattor'];
     if (!dynamicSources.includes(article.sourceId)) return;
     
     // If we already have the crawled body (longer than 20 chars), skip network fetch
@@ -89,12 +89,11 @@ function NewsDetail() {
         const doc = parser.parseFromString(htmlText, "text/html");
         
         let articleBody = null;
-        if (article.sourceId === 'ittefaq') {
-          // Ittefaq element selectors from Python scraper
+        if (article.sourceId === 'ittefaq' || article.sourceId === 'ekattor') {
+          // Both Ittefaq and Ekattor TV share the same detail layout selectors
           articleBody = doc.querySelector('article.jw_detail_content_holder div[itemprop="articleBody"]');
         } else if (article.sourceId === 'banglatribune') {
-          // Bangla Tribune selectors from Python scraper:
-          // article_tag = sp_soup.find('div', class_='viewport jw_article_body')
+          // Bangla Tribune selectors from Python scraper
           articleBody = doc.querySelector('div.viewport.jw_article_body');
         }
         

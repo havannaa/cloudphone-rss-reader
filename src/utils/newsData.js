@@ -8,7 +8,8 @@ export const newsSources = [
   { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml" },
   { id: "ittefaq", name: "Daily Ittefaq", url: "https://www.ittefaq.com.bd/feed/" },
   { id: "amarbanglabd", name: "Amar Bangla BD", url: "https://www.amarbanglabd.com/feeds" },
-  { id: "banglatribune", name: "Bangla Tribune", url: "https://www.banglatribune.com/feed/" }
+  { id: "banglatribune", name: "Bangla Tribune", url: "https://www.banglatribune.com/feed/" },
+  { id: "ekattor", name: "Ekattor TV", url: "https://ekattor.tv/feed/" }
 ];
 
 const CORS_PROXIES = [
