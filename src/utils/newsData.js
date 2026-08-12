@@ -6,7 +6,8 @@ export const newsSources = [
   { id: "aljazeera", name: "Al Jazeera", url: "https://www.aljazeera.com/xml/rss/all.xml" },
   { id: "indiatoday", name: "India Today", url: "https://www.indiatoday.in/rss/home" },
   { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml" },
-  { id: "ittefaq", name: "Daily Ittefaq", url: "https://www.ittefaq.com.bd/feed/" }
+  { id: "ittefaq", name: "Daily Ittefaq", url: "https://www.ittefaq.com.bd/feed/" },
+  { id: "amarbanglabd", name: "Amar Bangla BD", url: "https://www.amarbanglabd.com/feeds" }
 ];
 
 const CORS_PROXIES = [
@@ -48,15 +49,39 @@ export async function fetchFeed(sourceId) {
 
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-  const items = xmlDoc.getElementsByTagName("item");
+  
+  // Support both standard RSS <item> and Atom <entry>
+  let items = xmlDoc.getElementsByTagName("item");
+  let isAtom = false;
+  
+  if (items.length === 0) {
+    items = xmlDoc.getElementsByTagName("entry");
+    isAtom = true;
+  }
+  
   const articles = [];
 
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     const title = item.getElementsByTagName("title")[0]?.textContent || "";
-    const link = item.getElementsByTagName("link")[0]?.textContent || "";
-    const description = item.getElementsByTagName("description")[0]?.textContent || "";
-    const pubDate = item.getElementsByTagName("pubDate")[0]?.textContent || "";
+    
+    let link = "";
+    if (isAtom) {
+      const linkTag = item.getElementsByTagName("link")[0];
+      link = linkTag ? (linkTag.getAttribute("href") || linkTag.textContent || "") : "";
+    } else {
+      link = item.getElementsByTagName("link")[0]?.textContent || "";
+    }
+    
+    const descriptionTag = isAtom
+      ? item.getElementsByTagName("summary")[0] || item.getElementsByTagName("content")[0]
+      : item.getElementsByTagName("description")[0];
+    const description = descriptionTag?.textContent || "";
+    
+    const pubDateTag = isAtom
+      ? item.getElementsByTagName("updated")[0] || item.getElementsByTagName("published")[0]
+      : item.getElementsByTagName("pubDate")[0];
+    const pubDate = pubDateTag?.textContent || "";
 
     // 1. Extract image url
     let imageUrl = "";
