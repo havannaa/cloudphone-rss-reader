@@ -18,7 +18,14 @@ export const newsSources = [
   { id: "mehr", name: "Mehr News", url: "https://en.mehrnews.com/rss", country: "Middle East" },
   { id: "aljazeera", name: "Al Jazeera", url: "https://www.aljazeera.com/xml/rss/all.xml", country: "Middle East" },
   // World News
-  { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", country: "World News" }
+  { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", country: "World News" },
+  { id: "nyt_home", name: "NYT Home", url: "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml", country: "World News" },
+  { id: "bbc_world", name: "BBC World", url: "https://feeds.bbci.co.uk/news/world/rss.xml", country: "World News" },
+  { id: "gnews_world", name: "Google News World", url: "https://news.google.com/rss", country: "World News" },
+  { id: "timesofindia", name: "Times of India World", url: "https://timesofindia.indiatimes.com/rssfeeds/296589292.cms", country: "World News" },
+  { id: "cna_world", name: "CNA World", url: "https://www.channelnewsasia.com/rssfeeds/8395884", country: "World News" },
+  { id: "independent_world", name: "The Independent World", url: "https://www.independent.co.uk/news/world/rss", country: "World News" },
+  { id: "france24", name: "France 24 World", url: "https://www.france24.com/en/rss", country: "World News" }
 ];
 
 const CORS_PROXIES = [
