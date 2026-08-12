@@ -10,7 +10,7 @@ import NewsDetail from './pages/NewsDetail.jsx'
 import NewsListBySource from './pages/NewsListBySource.jsx'
 
 // Initialize brightness and grayscale theme from sessionStorage on startup
-const brightness = sessionStorage.getItem('brightness_level') || '25';
+const brightness = sessionStorage.getItem('brightness_level') || '20';
 document.documentElement.style.setProperty('--app-brightness', `${brightness}%`);
 
 const colorMode = sessionStorage.getItem('color_mode') === 'true';
@@ -26,8 +26,8 @@ window.addEventListener('keydown', (e) => {
     document.body.classList.toggle('color-mode', next);
   } else if (e.key === '#') {
     e.preventDefault();
-    const levels = ['25', '50', '100'];
-    const current = sessionStorage.getItem('brightness_level') || '25';
+    const levels = ['20', '40', '60', '80', '100'];
+    const current = sessionStorage.getItem('brightness_level') || '20';
     const nextIndex = (levels.indexOf(current) + 1) % levels.length;
     const nextLevel = levels[nextIndex];
     sessionStorage.setItem('brightness_level', nextLevel);
