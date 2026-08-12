@@ -122,7 +122,19 @@ function AppComponent() {
   };
 
   useEffect(() => {
-    if (!sessionStorage.getItem('all_articles')) {
+    const cached = sessionStorage.getItem('all_articles');
+    let needsPreload = !cached;
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        if (Object.keys(parsed).length !== newsSources.length) {
+          needsPreload = true;
+        }
+      } catch (e) {
+        needsPreload = true;
+      }
+    }
+    if (needsPreload) {
       preloadAllFeeds();
     }
   }, []);

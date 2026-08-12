@@ -7,25 +7,15 @@ export const newsSources = [
   { id: "amarbanglabd", name: "Amar Bangla BD", url: "https://www.amarbanglabd.com/feeds", country: "Bangladesh" },
   { id: "banglatribune", name: "Bangla Tribune", url: "https://www.banglatribune.com/feed/", country: "Bangladesh" },
   { id: "ekattor", name: "Ekattor TV", url: "https://ekattor.tv/feed/", country: "Bangladesh" },
-  { id: "gnews_bangladesh", name: "Google News Bangladesh", url: "https://news.google.com/rss/search?q=Bangladesh", country: "Bangladesh" },
-  { id: "gnews_kushtia", name: "Google News Kushtia", url: "https://news.google.com/rss/search?q=Kushtia", country: "Bangladesh" },
   // India
   { id: "indiatoday", name: "India Today", url: "https://www.indiatoday.in/rss/home", country: "India" },
   // Middle East
-  { id: "albawaba", name: "Al Bawaba", url: "https://www.albawaba.com/rss/all", country: "Middle East" },
-  { id: "almonitor", name: "Al-Monitor", url: "https://www.al-monitor.com/rss", country: "Middle East" },
-  { id: "memonitor", name: "Middle East Monitor", url: "https://middleeastmnt.disqus.com/latest.rss", country: "Middle East" },
   { id: "mehr", name: "Mehr News", url: "https://en.mehrnews.com/rss", country: "Middle East" },
   { id: "aljazeera", name: "Al Jazeera", url: "https://www.aljazeera.com/xml/rss/all.xml", country: "Middle East" },
   // World News
   { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", country: "World News" },
   { id: "nyt_home", name: "NYT Home", url: "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml", country: "World News" },
-  { id: "bbc_world", name: "BBC World", url: "https://feeds.bbci.co.uk/news/world/rss.xml", country: "World News" },
-  { id: "gnews_world", name: "Google News World", url: "https://news.google.com/rss", country: "World News" },
-  { id: "timesofindia", name: "Times of India World", url: "https://timesofindia.indiatimes.com/rssfeeds/296589292.cms", country: "World News" },
-  { id: "cna_world", name: "CNA World", url: "https://www.channelnewsasia.com/rssfeeds/8395884", country: "World News" },
-  { id: "independent_world", name: "The Independent World", url: "https://www.independent.co.uk/news/world/rss", country: "World News" },
-  { id: "france24", name: "France 24 World", url: "https://www.france24.com/en/rss", country: "World News" }
+  { id: "bbc_world", name: "BBC World", url: "https://feeds.bbci.co.uk/news/world/rss.xml", country: "World News" }
 ];
 
 const CORS_PROXIES = [
