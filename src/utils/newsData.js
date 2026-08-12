@@ -11,10 +11,13 @@ export const newsSources = [
   { id: "gnews_kushtia", name: "Google News Kushtia", url: "https://news.google.com/rss/search?q=Kushtia", country: "Bangladesh" },
   // India
   { id: "indiatoday", name: "India Today", url: "https://www.indiatoday.in/rss/home", country: "India" },
-  // Iran
-  { id: "mehr", name: "Mehr News", url: "https://en.mehrnews.com/rss", country: "Iran" },
+  // Middle East
+  { id: "albawaba", name: "Al Bawaba", url: "https://www.albawaba.com/rss/all", country: "Middle East" },
+  { id: "almonitor", name: "Al-Monitor", url: "https://www.al-monitor.com/rss", country: "Middle East" },
+  { id: "memonitor", name: "Middle East Monitor", url: "https://middleeastmnt.disqus.com/latest.rss", country: "Middle East" },
+  { id: "mehr", name: "Mehr News", url: "https://en.mehrnews.com/rss", country: "Middle East" },
+  { id: "aljazeera", name: "Al Jazeera", url: "https://www.aljazeera.com/xml/rss/all.xml", country: "Middle East" },
   // World News
-  { id: "aljazeera", name: "Al Jazeera", url: "https://www.aljazeera.com/xml/rss/all.xml", country: "World News" },
   { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", country: "World News" }
 ];
 
