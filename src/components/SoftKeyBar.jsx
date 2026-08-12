@@ -71,13 +71,7 @@ function SoftKeyBar({
     );
   };
 
-  return (
-    <>
-      <footer>
-        {['start', 'center', 'end'].map((position) => renderButton(position))}
-      </footer>
-    </>
-  )
+  return null;
 }
 
 SoftKeyBar.propTypes = {
