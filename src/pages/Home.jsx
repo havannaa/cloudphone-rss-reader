@@ -9,7 +9,7 @@ import { withTranslation } from 'react-i18next'
 import { newsSources, fetchFeed } from '../utils/newsData'
 import './Home.css'
 
-const categoriesList = ['Bangladesh', 'India', 'Middle East', 'World News', 'Cryptocurrency', 'Weather'];
+const categoriesList = ['Bangladesh', 'Middle East', 'World News', 'Cryptocurrency', 'Weather'];
 
 function AppComponent() {
   const navigate = useNavigate();

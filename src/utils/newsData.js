@@ -7,9 +7,8 @@ export const newsSources = [
   { id: "amarbanglabd", name: "Amar Bangla BD", url: "https://www.amarbanglabd.com/feeds", country: "Bangladesh" },
   { id: "banglatribune", name: "Bangla Tribune", url: "https://www.banglatribune.com/feed/", country: "Bangladesh" },
   { id: "ekattor", name: "Ekattor TV", url: "https://ekattor.tv/feed/", country: "Bangladesh" },
-  // India
-  { id: "indiatoday", name: "India Today", url: "https://www.indiatoday.in/rss/home", country: "India" },
   // Middle East
+  { id: "indiatoday", name: "India Today", url: "https://www.indiatoday.in/rss/home", country: "World News" },
   { id: "mehr", name: "Mehr News", url: "https://en.mehrnews.com/rss", country: "Middle East" },
   { id: "aljazeera", name: "Al Jazeera", url: "https://www.aljazeera.com/xml/rss/all.xml", country: "Middle East" },
   // World News
