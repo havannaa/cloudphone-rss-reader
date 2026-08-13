@@ -1,4 +1,5 @@
 export const DISTRICTS = [
+  { name: "Kushtia", lat: 23.9010, lon: 89.1205 },
   { name: "Dhaka", lat: 23.8103, lon: 90.4125 },
   { name: "Chittagong", lat: 22.3569, lon: 91.7832 },
   { name: "Khulna", lat: 22.8157, lon: 89.5510 },
@@ -7,7 +8,6 @@ export const DISTRICTS = [
   { name: "Sylhet", lat: 24.8949, lon: 91.8687 },
   { name: "Rangpur", lat: 25.7558, lon: 89.2447 },
   { name: "Mymensingh", lat: 24.7471, lon: 90.4203 },
-  { name: "Kushtia", lat: 23.9010, lon: 89.1205 },
   { name: "Comilla", lat: 23.4682, lon: 91.1788 },
   { name: "Jessore", lat: 23.1667, lon: 89.2167 }
 ];
