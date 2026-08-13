@@ -78,6 +78,7 @@ function CategoryPage() {
 
     sessionStorage.setItem('all_articles', JSON.stringify(currentArticles));
     sessionStorage.setItem('all_errors', JSON.stringify(currentErrors));
+    sessionStorage.setItem('last_update_timestamp', Date.now().toString());
     
     setArticlesMap(currentArticles);
     setErrorsMap(currentErrors);

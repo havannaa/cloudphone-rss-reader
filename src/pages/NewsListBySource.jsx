@@ -72,6 +72,7 @@ function NewsListBySource() {
       setError(err.message);
       setArticles([]);
     }
+    sessionStorage.setItem('last_update_timestamp', Date.now().toString());
     setLoading(false);
   };
 

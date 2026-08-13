@@ -21,6 +21,30 @@ function AppComponent() {
   const [loading, setLoading] = useState(() => !sessionStorage.getItem('all_articles'));
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [focusedIndex, setFocusedIndex] = useState(() => Number(sessionStorage.getItem('news_category_focus') || 0));
+  const [relativeTime, setRelativeTime] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const ts = sessionStorage.getItem('last_update_timestamp');
+      if (!ts) {
+        setRelativeTime(t('Never'));
+        return;
+      }
+      const diffMs = Date.now() - Number(ts);
+      const diffMins = Math.floor(diffMs / 60000);
+      if (diffMins < 1) {
+        setRelativeTime(t('Just now'));
+      } else if (diffMins === 1) {
+        setRelativeTime(t('1 minute ago'));
+      } else {
+        setRelativeTime(t('{{count}} minutes ago', { count: diffMins }));
+      }
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 30000);
+    return () => clearInterval(interval);
+  }, [loading]);
 
   const onSoftKeyClick = (position) => {
     switch (position) {
@@ -118,6 +142,7 @@ function AppComponent() {
 
     sessionStorage.setItem('all_articles', JSON.stringify(newArticlesMap));
     sessionStorage.setItem('all_errors', JSON.stringify(newErrorsMap));
+    sessionStorage.setItem('last_update_timestamp', Date.now().toString());
     setLoading(false);
   };
 
@@ -136,6 +161,8 @@ function AppComponent() {
     }
     if (needsPreload) {
       preloadAllFeeds();
+    } else if (!sessionStorage.getItem('last_update_timestamp')) {
+      sessionStorage.setItem('last_update_timestamp', Date.now().toString());
     }
   }, []);
 
@@ -167,6 +194,12 @@ function AppComponent() {
 
       <section id="app" ref={containerRef}>
         <h2 className="section-title">{t('News Categories')}</h2>
+        
+        {!loading && (
+          <div style={{ fontSize: '7.5pt', color: '#64748b', textAlign: 'center', marginTop: '-4px', marginBottom: '10px' }}>
+            {t('Updated')}: {relativeTime}
+          </div>
+        )}
         
         {loading ? (
           <div style={{ padding: '40px 10px', textAlign: 'center', color: '#94a3b8', fontSize: '10pt' }}>
