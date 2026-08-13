@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { useNavigate, useLocation } from 'react-router'
+import { useNavigate, useLocation, Link } from 'react-router'
 import { newsSources, fetchFeed } from '../utils/newsData'
 import Header from '../components/Header'
 import { t } from 'i18next'
@@ -129,6 +129,13 @@ function CryptoPage() {
           handlePageChange(page - 1);
         }
         break;
+      case 'Enter':
+      case '5':
+        e.preventDefault();
+        if (focusables[focusedIndex]) {
+          focusables[focusedIndex].click();
+        }
+        break;
       case '0':
         e.preventDefault();
         navigate('/');
@@ -189,11 +196,15 @@ function CryptoPage() {
                 const isNegative = changeStr.startsWith('-');
                 
                 return (
-                  <div
+                  <Link
                     key={item.id}
-                    tabIndex={0}
+                    to={`/crypto-detail/${item.id}`}
                     className={`news-card focusable-item ${idx === focusedIndex ? 'focused' : ''}`}
-                    style={{ display: 'flex', flexDirection: 'column', padding: '12px 14px', outline: 'none' }}
+                    onClick={() => {
+                      sessionStorage.setItem(`news_focus_${sourceId}`, idx);
+                      sessionStorage.setItem('active_articles', JSON.stringify(articles));
+                    }}
+                    style={{ display: 'flex', flexDirection: 'column', padding: '12px 14px', textDecoration: 'none' }}
                   >
                     <div className="card-meta">
                       <span className="card-badge" style={{ backgroundColor: isNegative ? '#ef4444' : '#22c55e', color: 'white' }}>
@@ -207,7 +218,7 @@ function CryptoPage() {
                     <p className="card-desc" style={{ fontSize: '8.5pt', color: '#94a3b8', marginTop: '4px' }}>
                       {item.summary}
                     </p>
-                  </div>
+                  </Link>
                 );
               })}
             </div>

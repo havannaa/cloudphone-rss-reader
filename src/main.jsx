@@ -9,8 +9,8 @@ import About from './pages/About.jsx'
 import NewsDetail from './pages/NewsDetail.jsx'
 import NewsListBySource from './pages/NewsListBySource.jsx'
 import Category from './pages/Category.jsx'
-import Youtube from './pages/Youtube.jsx'
 import Crypto from './pages/Crypto.jsx'
+import CryptoDetail from './pages/CryptoDetail.jsx'
 
 function AppWrapper() {
   const [showSlider, setShowSlider] = useState(false);
@@ -79,8 +79,8 @@ function AppWrapper() {
         <Route path='category/:country' element={<Category />} />
         <Route path='source/:sourceId' element={<NewsListBySource />} />
         <Route path='news/:id' element={<NewsDetail />} />
-        <Route path='youtube' element={<Youtube />} />
         <Route path='crypto' element={<Crypto />} />
+        <Route path='crypto-detail/:id' element={<CryptoDetail />} />
         <Route path='settings' element={<Settings />} />
         <Route path='about' element={<About />} />
       </Routes>

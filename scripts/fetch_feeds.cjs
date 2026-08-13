@@ -88,7 +88,20 @@ async function run() {
       const changeSign = changeVal >= 0 ? '+' : '';
       const price = Number(coin.price_usd).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       const title = `${coin.name} (${coin.symbol}) - $${price}`;
-      const description = `Price: $${price} | 24h Change: ${changeSign}${coin.percent_change_24h}% | 1h Change: ${coin.percent_change_1h}% | Market Cap: $${Number(coin.market_cap_usd).toLocaleString()}`;
+      const coinData = {
+        rank: coin.rank,
+        price_usd: coin.price_usd,
+        price_btc: coin.price_btc,
+        percent_change_24h: coin.percent_change_24h,
+        percent_change_1h: coin.percent_change_1h,
+        percent_change_7d: coin.percent_change_7d,
+        market_cap_usd: coin.market_cap_usd,
+        volume24: coin.volume24,
+        csupply: coin.csupply,
+        msupply: coin.msupply
+      };
+      const descText = `Price: $${price} | 24h Change: ${changeSign}${coin.percent_change_24h}% | 1h Change: ${coin.percent_change_1h}% | Market Cap: $${Number(coin.market_cap_usd).toLocaleString()}`;
+      const description = `${descText} ||JSON:${JSON.stringify(coinData)}`;
       const pubDate = new Date().toUTCString();
       xml += `  <item>
     <title>${title}</title>

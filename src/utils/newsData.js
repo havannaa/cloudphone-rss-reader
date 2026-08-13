@@ -29,6 +29,87 @@ export async function fetchFeed(sourceId, forceRefetch = false) {
   const source = newsSources.find(s => s.id === sourceId);
   if (!source) throw new Error("Source not found");
 
+  if (sourceId === 'crypto') {
+    if (!forceRefetch) {
+      try {
+        const staticUrl = `./feeds/crypto.xml`;
+        const response = await fetch(staticUrl);
+        if (response.ok) {
+          const xmlText = await response.text();
+          return parseRSS(xmlText, sourceId);
+        }
+      } catch (e) {
+        console.warn("Failed to load static crypto XML:", e);
+      }
+    }
+
+    let jsonText = "";
+    let errorMsg = "";
+
+    try {
+      const response = await fetch(source.url);
+      if (response.ok) {
+        jsonText = await response.text();
+      }
+    } catch (e) {
+      errorMsg = e.message;
+    }
+
+    if (!jsonText) {
+      for (const proxy of CORS_PROXIES) {
+        try {
+          const targetUrl = proxy.startsWith("/")
+            ? window.location.origin + proxy + encodeURIComponent(source.url)
+            : proxy + encodeURIComponent(source.url);
+          const response = await fetch(targetUrl);
+          if (response.ok) {
+            jsonText = await response.text();
+            break;
+          }
+        } catch (e) {
+          errorMsg = e.message;
+        }
+      }
+    }
+
+    if (!jsonText) {
+      throw new Error(errorMsg || "Failed to fetch live crypto prices");
+    }
+
+    const data = JSON.parse(jsonText);
+    const articles = (data.data || []).map((coin, index) => {
+      const changeVal = parseFloat(coin.percent_change_24h || '0');
+      const changeSign = changeVal >= 0 ? '+' : '';
+      const price = Number(coin.price_usd).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const title = `${coin.name} (${coin.symbol}) - $${price}`;
+      const coinData = {
+        rank: coin.rank,
+        price_usd: coin.price_usd,
+        price_btc: coin.price_btc,
+        percent_change_24h: coin.percent_change_24h,
+        percent_change_1h: coin.percent_change_1h,
+        percent_change_7d: coin.percent_change_7d,
+        market_cap_usd: coin.market_cap_usd,
+        volume24: coin.volume24,
+        csupply: coin.csupply,
+        msupply: coin.msupply
+      };
+      const descText = `Price: $${price} | 24h Change: ${changeSign}${coin.percent_change_24h}% | 1h Change: ${coin.percent_change_1h}% | Market Cap: $${Number(coin.market_cap_usd).toLocaleString()}`;
+      
+      return {
+        id: index + 1,
+        sourceId: 'crypto',
+        title,
+        link: `https://www.coinlore.com/coin/${coin.nameid}`,
+        summary: descText,
+        content: `${descText} ||JSON:${JSON.stringify(coinData)}`,
+        date: formatDate(new Date().toUTCString()),
+        imageUrl: ""
+      };
+    });
+    return articles;
+  }
+
   let xmlText = "";
   let errorMsg = "";
 
