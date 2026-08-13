@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>Crypto Prices</title>
+  <link>https://www.coinlore.com</link>
+  <description>Major Cryptocurrency Prices</description>
+  <lastBuildDate>Thu, 13 Aug 2026 04:59:31 GMT</lastBuildDate>
+  <item>
+    <title>Bitcoin (BTC) - $63,713.93</title>
+    <link>https://www.coinlore.com/coin/bitcoin</link>
+    <description>Price: $63,713.93 | 24h Change: -0.16% | 1h Change: 0.10% | Market Cap: $1,272,421,414,864.6</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Ethereum (ETH) - $1,891.91</title>
+    <link>https://www.coinlore.com/coin/ethereum</link>
+    <description>Price: $1,891.91 | 24h Change: +0.13% | 1h Change: 0.26% | Market Cap: $231,521,433,809.98</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Tether (USDT) - $1.00</title>
+    <link>https://www.coinlore.com/coin/tether</link>
+    <description>Price: $1.00 | 24h Change: -0.01% | 1h Change: 0.01% | Market Cap: $183,071,926,677.72</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Binance Coin (BNB) - $612.42</title>
+    <link>https://www.coinlore.com/coin/binance-coin</link>
+    <description>Price: $612.42 | 24h Change: -0.39% | 1h Change: 0.12% | Market Cap: $85,240,363,721.66</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>USD Coin (USDC) - $1.00</title>
+    <link>https://www.coinlore.com/coin/usd-coin</link>
+    <description>Price: $1.00 | 24h Change: +0.02% | 1h Change: 0.01% | Market Cap: $74,045,122,526.1</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>XRP (XRP) - $1.01</title>
+    <link>https://www.coinlore.com/coin/ripple</link>
+    <description>Price: $1.01 | 24h Change: -0.98% | 1h Change: -0.02% | Market Cap: $60,420,416,110.97</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Solana (SOL) - $76.12</title>
+    <link>https://www.coinlore.com/coin/solana</link>
+    <description>Price: $76.12 | 24h Change: -0.30% | 1h Change: -0.18% | Market Cap: $41,344,756,111.18</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>TRON (TRX) - $0.34</title>
+    <link>https://www.coinlore.com/coin/tron</link>
+    <description>Price: $0.34 | 24h Change: +0.44% | 1h Change: -0.01% | Market Cap: $31,797,201,823.36</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Hyperliquid (HYPE) - $56.75</title>
+    <link>https://www.coinlore.com/coin/hyperliquid</link>
+    <description>Price: $56.75 | 24h Change: +3.99% | 1h Change: 0.38% | Market Cap: $18,951,968,632.83</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Staked Ether (STETH) - $1,891.07</title>
+    <link>https://www.coinlore.com/coin/staked-ether</link>
+    <description>Price: $1,891.07 | 24h Change: +0.07% | 1h Change: 0.30% | Market Cap: $16,171,892,286.19</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Ethena USDe (USDe) - $1.00</title>
+    <link>https://www.coinlore.com/coin/ethena-usde</link>
+    <description>Price: $1.00 | 24h Change: +0.00% | 1h Change: -0.01% | Market Cap: $14,084,150,153.8</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Dogecoin (DOGE) - $0.07</title>
+    <link>https://www.coinlore.com/coin/dogecoin</link>
+    <description>Price: $0.07 | 24h Change: -2.54% | 1h Change: 0.17% | Market Cap: $11,818,642,397.61</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Zcash (ZEC) - $493.41</title>
+    <link>https://www.coinlore.com/coin/zcash</link>
+    <description>Price: $493.41 | 24h Change: +2.27% | 1h Change: 0.15% | Market Cap: $8,006,189,408.59</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Wrapped Bitcoin (WBTC) - $62,479.85</title>
+    <link>https://www.coinlore.com/coin/wrapped-bitcoin</link>
+    <description>Price: $62,479.85 | 24h Change: -0.54% | 1h Change: 0.03% | Market Cap: $7,960,182,631.23</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Monero (XMR) - $395.51</title>
+    <link>https://www.coinlore.com/coin/monero</link>
+    <description>Price: $395.51 | 24h Change: +3.21% | 1h Change: -0.50% | Market Cap: $7,295,869,481.55</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Wrapped Beacon ETH (WBETH) - $2,088.47</title>
+    <link>https://www.coinlore.com/coin/wrapped-beacon-eth</link>
+    <description>Price: $2,088.47 | 24h Change: +0.15% | 1h Change: 0.33% | Market Cap: $6,817,168,903.01</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Cardano (ADA) - $0.18</title>
+    <link>https://www.coinlore.com/coin/cardano</link>
+    <description>Price: $0.18 | 24h Change: -2.05% | 1h Change: -0.13% | Market Cap: $6,570,618,660.27</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>WETH (WETH) - $1,887.04</title>
+    <link>https://www.coinlore.com/coin/weth</link>
+    <description>Price: $1,887.04 | 24h Change: +0.29% | 1h Change: 0.54% | Market Cap: $6,369,347,928.55</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>ChainLink (LINK) - $8.75</title>
+    <link>https://www.coinlore.com/coin/chainlink</link>
+    <description>Price: $8.75 | 24h Change: +0.30% | 1h Change: 0.36% | Market Cap: $5,933,578,167.49</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+  <item>
+    <title>Dai (DAI) - $1.00</title>
+    <link>https://www.coinlore.com/coin/dai</link>
+    <description>Price: $1.00 | 24h Change: +0.01% | 1h Change: -0.02% | Market Cap: $5,364,466,345.03</description>
+    <pubDate>Thu, 13 Aug 2026 04:59:31 GMT</pubDate>
+  </item>
+</channel>
+</rss>
