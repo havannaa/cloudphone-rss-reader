@@ -101,7 +101,7 @@ function AppComponent() {
       case '3':
         e.preventDefault();
         // Clear all cached articles and force preload all categories
-        preloadAllFeeds();
+        preloadAllFeeds(true);
         break;
       case 'Enter':
       case '5':
@@ -113,7 +113,7 @@ function AppComponent() {
     }
   };
 
-  const preloadAllFeeds = async () => {
+  const preloadAllFeeds = async (forceRefetch = false) => {
     setLoading(true);
     setLoadingProgress(0);
 
@@ -128,7 +128,7 @@ function AppComponent() {
     await Promise.all(
       newsSources.map(async (source) => {
         try {
-          const data = await fetchFeed(source.id);
+          const data = await fetchFeed(source.id, forceRefetch);
           newArticlesMap[source.id] = data;
         } catch (err) {
           console.error(`Failed to load source: ${source.id}`, err);

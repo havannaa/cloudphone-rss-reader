@@ -55,7 +55,7 @@ function NewsListBySource() {
     }
 
     try {
-      const data = await fetchFeed(sourceId);
+      const data = await fetchFeed(sourceId, forceRefetch);
       cachedArticles[sourceId] = data;
       delete cachedErrors[sourceId];
       sessionStorage.setItem('all_articles', JSON.stringify(cachedArticles));

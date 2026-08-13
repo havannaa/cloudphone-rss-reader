@@ -62,7 +62,7 @@ function CategoryPage() {
     await Promise.all(
       sourcesToFetch.map(async (source) => {
         try {
-          const data = await fetchFeed(source.id);
+          const data = await fetchFeed(source.id, forceRefetch);
           currentArticles[source.id] = data;
           delete currentErrors[source.id];
         } catch (err) {
