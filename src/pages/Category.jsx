@@ -22,6 +22,9 @@ function CategoryPage() {
   const [menuVisible, setMenuVisible] = useState(location.hash.includes('#menu'));
   const [loading, setLoading] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
+  const [currentLoadingSource, setCurrentLoadingSource] = useState('');
+  const [completedFeedsCount, setCompletedFeedsCount] = useState(0);
+  const [totalFeedsCount, setTotalFeedsCount] = useState(0);
   const [articlesMap, setArticlesMap] = useState(() => JSON.parse(sessionStorage.getItem('all_articles') || '{}'));
   const [errorsMap, setErrorsMap] = useState(() => JSON.parse(sessionStorage.getItem('all_errors') || '{}'));
   const [focusedIndex, setFocusedIndex] = useState(() => Number(sessionStorage.getItem(`news_category_source_focus_${country}`) || 0));
@@ -58,10 +61,14 @@ function CategoryPage() {
 
     const total = sourcesToFetch.length;
     let completed = 0;
+    setCompletedFeedsCount(0);
+    setTotalFeedsCount(total);
+    setCurrentLoadingSource('Initializing...');
 
     await Promise.all(
       sourcesToFetch.map(async (source) => {
         try {
+          setCurrentLoadingSource(`Fetching ${source.name}...`);
           const data = await fetchFeed(source.id, forceRefetch);
           currentArticles[source.id] = data;
           delete currentErrors[source.id];
@@ -71,6 +78,7 @@ function CategoryPage() {
           currentArticles[source.id] = [];
         } finally {
           completed++;
+          setCompletedFeedsCount(completed);
           setLoadingProgress(Math.round((completed / total) * 100));
         }
       })
@@ -190,9 +198,17 @@ function CategoryPage() {
         <h2 className="section-title">{t('News Sources')}</h2>
         
         {loading ? (
-          <div style={{ padding: '40px 10px', textAlign: 'center', color: '#94a3b8', fontSize: '10pt' }}>
-            <div className="spinner" style={{ marginBottom: '12px' }}></div>
-            {t('Syncing category feeds...')} ({loadingProgress}%)
+          <div style={{ padding: '30px 10px', textAlign: 'center', color: '#94a3b8', fontSize: '9.5pt' }}>
+            <div className="spinner" style={{ marginBottom: '14px' }}></div>
+            <div style={{ fontWeight: '500', color: '#f8fafc', marginBottom: '6px' }}>
+              {t('Syncing category feeds...')} ({loadingProgress}%)
+            </div>
+            <div style={{ fontSize: '7.5pt', color: '#64748b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {t('Source')}: {currentLoadingSource}
+            </div>
+            <div style={{ fontSize: '7.5pt', color: '#64748b', marginTop: '4px' }}>
+              {completedFeedsCount} / {totalFeedsCount} {t('feeds')}
+            </div>
           </div>
         ) : (
           <div className="news-list">

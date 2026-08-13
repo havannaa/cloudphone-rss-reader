@@ -20,6 +20,9 @@ function AppComponent() {
   const [menuVisible, setMenuVisible] = useState(location.hash.includes('#menu'));
   const [loading, setLoading] = useState(() => !sessionStorage.getItem('feeds_preloaded_once'));
   const [loadingProgress, setLoadingProgress] = useState(0);
+  const [currentLoadingSource, setCurrentLoadingSource] = useState('');
+  const [completedFeedsCount, setCompletedFeedsCount] = useState(0);
+  const [totalFeedsCount, setTotalFeedsCount] = useState(0);
   const [focusedIndex, setFocusedIndex] = useState(() => Number(sessionStorage.getItem('news_category_focus') || 0));
   const [relativeTime, setRelativeTime] = useState('');
 
@@ -125,6 +128,9 @@ function AppComponent() {
 
     const total = bangladeshSources.length;
     let completed = 0;
+    setCompletedFeedsCount(0);
+    setTotalFeedsCount(total);
+    setCurrentLoadingSource('Initializing...');
     const newArticlesMap = {};
     const newErrorsMap = {};
 
@@ -132,6 +138,7 @@ function AppComponent() {
     await Promise.all(
       bangladeshSources.map(async (source) => {
         try {
+          setCurrentLoadingSource(`Fetching ${source.name}...`);
           const data = await fetchFeed(source.id, false);
           newArticlesMap[source.id] = data;
         } catch (err) {
@@ -139,6 +146,7 @@ function AppComponent() {
           newErrorsMap[source.id] = err.message;
         } finally {
           completed++;
+          setCompletedFeedsCount(completed);
           setLoadingProgress(Math.round((completed / total) * 100));
         }
       })
@@ -185,12 +193,16 @@ function AppComponent() {
 
     const total = newsSources.length;
     let completed = 0;
+    setCompletedFeedsCount(0);
+    setTotalFeedsCount(total);
+    setCurrentLoadingSource('Initializing...');
     const newArticlesMap = {};
     const newErrorsMap = {};
 
     await Promise.all(
       newsSources.map(async (source) => {
         try {
+          setCurrentLoadingSource(`Fetching ${source.name}...`);
           const data = await fetchFeed(source.id, forceRefetch);
           newArticlesMap[source.id] = data;
         } catch (err) {
@@ -198,6 +210,7 @@ function AppComponent() {
           newErrorsMap[source.id] = err.message;
         } finally {
           completed++;
+          setCompletedFeedsCount(completed);
           setLoadingProgress(Math.round((completed / total) * 100));
         }
       })
@@ -255,9 +268,17 @@ function AppComponent() {
         )}
         
         {loading ? (
-          <div style={{ padding: '40px 10px', textAlign: 'center', color: '#94a3b8', fontSize: '10pt' }}>
-            <div className="spinner" style={{ marginBottom: '12px' }}></div>
-            {t('Syncing all categories...')} ({loadingProgress}%)
+          <div style={{ padding: '30px 10px', textAlign: 'center', color: '#94a3b8', fontSize: '9.5pt' }}>
+            <div className="spinner" style={{ marginBottom: '14px' }}></div>
+            <div style={{ fontWeight: '500', color: '#f8fafc', marginBottom: '6px' }}>
+              {t('Syncing feeds...')} ({loadingProgress}%)
+            </div>
+            <div style={{ fontSize: '7.5pt', color: '#64748b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {t('Source')}: {currentLoadingSource}
+            </div>
+            <div style={{ fontSize: '7.5pt', color: '#64748b', marginTop: '4px' }}>
+              {completedFeedsCount} / {totalFeedsCount} {t('feeds')}
+            </div>
           </div>
         ) : (
           <div className="news-list">
