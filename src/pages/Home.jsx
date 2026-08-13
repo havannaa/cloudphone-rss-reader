@@ -18,7 +18,7 @@ function AppComponent() {
 
   // States
   const [menuVisible, setMenuVisible] = useState(location.hash.includes('#menu'));
-  const [loading, setLoading] = useState(() => !sessionStorage.getItem('all_articles'));
+  const [loading, setLoading] = useState(() => !sessionStorage.getItem('feeds_preloaded_once'));
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [focusedIndex, setFocusedIndex] = useState(() => Number(sessionStorage.getItem('news_category_focus') || 0));
   const [relativeTime, setRelativeTime] = useState('');
@@ -147,6 +147,7 @@ function AppComponent() {
     sessionStorage.setItem('all_articles', JSON.stringify(newArticlesMap));
     sessionStorage.setItem('all_errors', JSON.stringify(newErrorsMap));
     sessionStorage.setItem('last_update_timestamp', Date.now().toString());
+    sessionStorage.setItem('feeds_preloaded_once', 'true');
 
     // User is now free to navigate
     setLoading(false);
@@ -205,23 +206,13 @@ function AppComponent() {
     sessionStorage.setItem('all_articles', JSON.stringify(newArticlesMap));
     sessionStorage.setItem('all_errors', JSON.stringify(newErrorsMap));
     sessionStorage.setItem('last_update_timestamp', Date.now().toString());
+    sessionStorage.setItem('feeds_preloaded_once', 'true');
     setLoading(false);
   };
 
   useEffect(() => {
-    const cached = sessionStorage.getItem('all_articles');
-    let needsPreload = !cached;
-    if (cached) {
-      try {
-        const parsed = JSON.parse(cached);
-        if (Object.keys(parsed).length !== newsSources.length) {
-          needsPreload = true;
-        }
-      } catch (e) {
-        needsPreload = true;
-      }
-    }
-    if (needsPreload) {
+    const preloadedOnce = sessionStorage.getItem('feeds_preloaded_once');
+    if (!preloadedOnce) {
       preloadBangladeshFirst();
     } else if (!sessionStorage.getItem('last_update_timestamp')) {
       sessionStorage.setItem('last_update_timestamp', Date.now().toString());
