@@ -190,7 +190,7 @@ function AppComponent() {
 
   return (
     <>
-      <Header title={t('World News')} />
+      <Header title="ngrk" />
 
       <section id="app" ref={containerRef}>
         <h2 className="section-title">{t('News Categories')}</h2>
