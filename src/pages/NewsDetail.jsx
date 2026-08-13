@@ -155,7 +155,7 @@ function NewsDetail() {
 
     try {
       // 1. Fetch RSS feed again
-      const data = await fetchFeed(article.sourceId);
+      const data = await fetchFeed(article.sourceId, true);
       
       // Update caches
       cachedArticles[article.sourceId] = data;
