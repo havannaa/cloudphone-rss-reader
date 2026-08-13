@@ -15,7 +15,8 @@ export const newsSources = [
   // World News
   { id: "nyt", name: "NYT World", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", country: "World News" },
   { id: "nyt_home", name: "NYT Home", url: "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml", country: "World News" },
-  { id: "bbc_world", name: "BBC World", url: "https://feeds.bbci.co.uk/news/world/rss.xml", country: "World News" }
+  { id: "bbc_world", name: "BBC World", url: "https://feeds.bbci.co.uk/news/world/rss.xml", country: "World News" },
+  { id: "crypto", name: "Cryptocurrency", url: "https://api.coinlore.net/api/tickers/?limit=20", country: "Cryptocurrency" }
 ];
 
 const CORS_PROXIES = [

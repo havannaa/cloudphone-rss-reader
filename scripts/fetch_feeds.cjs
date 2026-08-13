@@ -53,6 +53,7 @@ function fetchUrl(urlStr) {
 }
 
 async function run() {
+  // 1. Fetch all standard news feeds
   for (const source of newsSources) {
     console.log(`Fetching ${source.id} from ${source.url}...`);
     try {
@@ -67,6 +68,41 @@ async function run() {
     } catch (err) {
       console.error(`Failed to fetch ${source.id}:`, err.message);
     }
+  }
+
+  // 2. Fetch and generate crypto.xml
+  console.log("Fetching cryptocurrency prices from CoinLore...");
+  try {
+    const jsonStr = await fetchUrl("https://api.coinlore.net/api/tickers/?limit=20");
+    const data = JSON.parse(jsonStr);
+    let xml = `<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>Crypto Prices</title>
+  <link>https://www.coinlore.com</link>
+  <description>Major Cryptocurrency Prices</description>
+  <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+`;
+    for (const coin of data.data || []) {
+      const changeVal = parseFloat(coin.percent_change_24h || '0');
+      const changeSign = changeVal >= 0 ? '+' : '';
+      const price = Number(coin.price_usd).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const title = `${coin.name} (${coin.symbol}) - $${price}`;
+      const description = `Price: $${price} | 24h Change: ${changeSign}${coin.percent_change_24h}% | 1h Change: ${coin.percent_change_1h}% | Market Cap: $${Number(coin.market_cap_usd).toLocaleString()}`;
+      const pubDate = new Date().toUTCString();
+      xml += `  <item>
+    <title>${title}</title>
+    <link>https://www.coinlore.com/coin/${coin.nameid}</link>
+    <description>${description}</description>
+    <pubDate>${pubDate}</pubDate>
+  </item>
+`;
+    }
+    xml += `</channel>\n</rss>`;
+    fs.writeFileSync(path.join(destDir, 'crypto.xml'), xml, 'utf8');
+    console.log("Saved crypto.xml successfully.");
+  } catch (err) {
+    console.error("Failed to generate crypto.xml:", err.message);
   }
 }
 

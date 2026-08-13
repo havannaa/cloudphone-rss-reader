@@ -9,7 +9,7 @@ import { withTranslation } from 'react-i18next'
 import { newsSources, fetchFeed } from '../utils/newsData'
 import './Home.css'
 
-const categoriesList = ['Bangladesh', 'India', 'Middle East', 'World News', 'YouTube'];
+const categoriesList = ['Bangladesh', 'India', 'Middle East', 'World News', 'YouTube', 'Cryptocurrency'];
 
 function AppComponent() {
   const navigate = useNavigate();
@@ -211,10 +211,16 @@ function AppComponent() {
             {categoriesList.map((country, idx) => {
               const count = newsSources.filter(s => s.country === country).length;
               const isYoutube = country === 'YouTube';
+              const isCrypto = country === 'Cryptocurrency';
+              const targetRoute = isYoutube 
+                ? '/youtube' 
+                : isCrypto 
+                  ? '/crypto' 
+                  : `/category/${encodeURIComponent(country)}`;
               return (
                 <Link
                   key={country}
-                  to={isYoutube ? '/youtube' : `/category/${encodeURIComponent(country)}`}
+                  to={targetRoute}
                   className={`news-card focusable-item ${idx === focusedIndex ? 'focused' : ''}`}
                   onClick={() => {
                     sessionStorage.setItem('news_category_focus', idx);
@@ -228,7 +234,11 @@ function AppComponent() {
                     <span style={{ fontSize: '8.5pt', color: '#64748b' }}>➜</span>
                   </div>
                   <span style={{ fontSize: '7.5pt', color: '#64748b', marginTop: '4px', textTransform: 'none' }}>
-                    {isYoutube ? t('Videos placeholder feed') : `${count} ${t('news sources')}`}
+                    {isYoutube 
+                      ? t('Videos placeholder feed') 
+                      : isCrypto 
+                        ? t('Real-time Coin Tickers') 
+                        : `${count} ${t('news sources')}`}
                   </span>
                 </Link>
               );
