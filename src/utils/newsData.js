@@ -24,30 +24,46 @@ const CORS_PROXIES = [
   "https://corsproxy.io/?url="
 ];
 
-export async function fetchFeed(sourceId) {
+export async function fetchFeed(sourceId, forceRefetch = false) {
   const source = newsSources.find(s => s.id === sourceId);
   if (!source) throw new Error("Source not found");
 
-  // Try parsing the feed using available proxies
   let xmlText = "";
   let errorMsg = "";
 
-  for (const proxy of CORS_PROXIES) {
+  // 1. Try static XML cache lookup first (only if forceRefetch is false)
+  if (!forceRefetch) {
     try {
-      // If it is a local relative proxy, resolve it relative to current window origin, otherwise build full proxy URL
-      const targetUrl = proxy.startsWith("/")
-        ? window.location.origin + proxy + encodeURIComponent(source.url)
-        : proxy + encodeURIComponent(source.url);
-
-      const response = await fetch(targetUrl);
+      const staticUrl = `./feeds/${sourceId}.xml`;
+      const response = await fetch(staticUrl);
       if (response.ok) {
         xmlText = await response.text();
-        break;
       } else {
-        errorMsg = `HTTP error! status: ${response.status}`;
+        errorMsg = `Static fetch status: ${response.status}`;
       }
     } catch (e) {
-      errorMsg = e.message;
+      errorMsg = `Static fetch error: ${e.message}`;
+    }
+  }
+
+  // 2. Fallback to live CORS proxies if static fetch was disabled or failed
+  if (!xmlText) {
+    for (const proxy of CORS_PROXIES) {
+      try {
+        const targetUrl = proxy.startsWith("/")
+          ? window.location.origin + proxy + encodeURIComponent(source.url)
+          : proxy + encodeURIComponent(source.url);
+
+        const response = await fetch(targetUrl);
+        if (response.ok) {
+          xmlText = await response.text();
+          break;
+        } else {
+          errorMsg = `Proxy fetch status: ${response.status}`;
+        }
+      } catch (e) {
+        errorMsg = e.message;
+      }
     }
   }
 
