@@ -6,8 +6,18 @@
     <description>Mehr News Agency</description>
     <language>en</language>
     <copyright>© 2017 Mehr News Agency. All rights reserved</copyright>
-    <lastBuildDate>Thu, 13 Aug 2026 05:07:51 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2026 06:04:45 GMT</lastBuildDate>
     <generator>Saba Enterprise Newsroom (www.nastooh.ir)</generator>
+    <item>
+      <title>US menace against civilian sites breach of Geneva Convention</title>
+      <link>https://en.mehrnews.com/news/246912/US-menace-against-civilian-sites-breach-of-Geneva-Convention</link>
+      <description>TEHRAN, Aug. 13 (MNA) – Condemning US threats and attacks against civilian infrastructures, the spokesman for the Iranian Foreign Ministry said US menace against civilian centers in Iran is clear violations of the Geneva Conventions and war crimes.</description>
+      <content:encoded />
+      <enclosure url="https://media.mehrnews.com/d/2026/01/18/4/5871730.jpg" length="1024000" type="image/jpeg" />
+      <category domain="politics">Politics</category>
+      <pubDate>Thu, 13 Aug 2026 05:54:44 GMT</pubDate>
+      <guid>https://en.mehrnews.com/news/246912/US-menace-against-civilian-sites-breach-of-Geneva-Convention</guid>
+    </item>
     <item>
       <title>Iran, Pakistan must lead Islamic unity</title>
       <link>https://en.mehrnews.com/news/246928/Iran-Pakistan-must-lead-Islamic-unity</link>
@@ -297,16 +307,6 @@
       <category domain="politics">Politics</category>
       <pubDate>Tue, 11 Aug 2026 06:53:13 GMT</pubDate>
       <guid>https://en.mehrnews.com/news/246898/Zelenskyy-discusses-trilateral-pact-drone-deal-with-MBS</guid>
-    </item>
-    <item>
-      <title>Caspian Sea security must be managed by coastal states</title>
-      <link>https://en.mehrnews.com/news/246897/Caspian-security-must-be-managed-by-coastal-states</link>
-      <description>TEHRAN, Aug. 11 (MNA) – Iran's deputy foreign minister said Caspian Sea security must be managed by the five coastal states alone, rejecting any military presence by foreign powers.</description>
-      <content:encoded />
-      <enclosure url="https://media.mehrnews.com/d/2022/11/25/4/4340815.jpg" length="1024000" type="image/jpeg" />
-      <category domain="politics">Politics</category>
-      <pubDate>Tue, 11 Aug 2026 06:46:50 GMT</pubDate>
-      <guid>https://en.mehrnews.com/news/246897/Caspian-security-must-be-managed-by-coastal-states</guid>
     </item>
   </channel>
 </rss>
