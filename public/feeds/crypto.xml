@@ -4,126 +4,127 @@
   <title>Crypto Prices</title>
   <link>https://www.coinlore.com</link>
   <description>Major Cryptocurrency Prices</description>
-  <lastBuildDate>Thu, 13 Aug 2026 08:58:02 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 13 Aug 2026 09:26:39 GMT</lastBuildDate>
   <item>
-    <title>Bitcoin (BTC) - $63,763.04</title>
+    <title>Bitcoin (BTC) - $63,613.99</title>
     <link>https://www.coinlore.com/coin/bitcoin</link>
-    <description>Price: $63,763.04 | 24h Change: -0.05% | 1h Change: -0.13% | Market Cap: $1,273,402,172,895.3 ||JSON:{"rank":1,"price_usd":"63763.04","price_btc":"1.00","percent_change_24h":"-0.05","percent_change_1h":"-0.13","percent_change_7d":"-1.73","market_cap_usd":"1273402172895.30","volume24":76652802203.64334,"csupply":"19970852.00","msupply":"21000000"}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $63,613.99 | 24h Change: -0.49% | 1h Change: -0.30% | Market Cap: $1,270,425,607,799.1 ||JSON:{"rank":1,"price_usd":"63613.99","price_btc":"1.00","percent_change_24h":"-0.49","percent_change_1h":"-0.30","percent_change_7d":"-1.76","market_cap_usd":"1270425607799.10","volume24":76386543900.65234,"csupply":"19970852.00","msupply":"21000000"}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>Ethereum (ETH) - $1,889.50</title>
+    <title>Ethereum (ETH) - $1,883.83</title>
     <link>https://www.coinlore.com/coin/ethereum</link>
-    <description>Price: $1,889.50 | 24h Change: -0.10% | 1h Change: -0.32% | Market Cap: $231,227,090,536.8 ||JSON:{"rank":2,"price_usd":"1889.50","price_btc":"0.031190","percent_change_24h":"-0.10","percent_change_1h":"-0.32","percent_change_7d":"-1.61","market_cap_usd":"231227090536.80","volume24":6741968132.896835,"csupply":"122374665.72","msupply":""}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $1,883.83 | 24h Change: -0.64% | 1h Change: -0.46% | Market Cap: $230,533,020,081.55 ||JSON:{"rank":2,"price_usd":"1883.83","price_btc":"0.031168","percent_change_24h":"-0.64","percent_change_1h":"-0.46","percent_change_7d":"-1.47","market_cap_usd":"230533020081.55","volume24":6761348619.804491,"csupply":"122374665.72","msupply":""}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
     <title>Tether (USDT) - $1.00</title>
     <link>https://www.coinlore.com/coin/tether</link>
-    <description>Price: $1.00 | 24h Change: -0.03% | 1h Change: -0.02% | Market Cap: $183,028,373,995.82 ||JSON:{"rank":3,"price_usd":"0.998813","price_btc":"0.000016","percent_change_24h":"-0.03","percent_change_1h":"-0.02","percent_change_7d":"-0.01","market_cap_usd":"183028373995.82","volume24":32632877949.221523,"csupply":"183245941051.28","msupply":""}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $1.00 | 24h Change: -0.03% | 1h Change: -0.01% | Market Cap: $183,022,547,242.26 ||JSON:{"rank":3,"price_usd":"0.998781","price_btc":"0.000017","percent_change_24h":"-0.03","percent_change_1h":"-0.01","percent_change_7d":"-0.02","market_cap_usd":"183022547242.26","volume24":32503506428.83377,"csupply":"183245941051.28","msupply":""}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>Binance Coin (BNB) - $614.16</title>
+    <title>Binance Coin (BNB) - $612.74</title>
     <link>https://www.coinlore.com/coin/binance-coin</link>
-    <description>Price: $614.16 | 24h Change: +0.59% | 1h Change: 0.08% | Market Cap: $85,483,129,822.03 ||JSON:{"rank":4,"price_usd":"614.16","price_btc":"0.010138","percent_change_24h":"0.59","percent_change_1h":"0.08","percent_change_7d":"2.68","market_cap_usd":"85483129822.03","volume24":360401922.6956105,"csupply":"139186427.32","msupply":"200000000"}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $612.74 | 24h Change: +0.17% | 1h Change: -0.10% | Market Cap: $85,285,786,141.45 ||JSON:{"rank":4,"price_usd":"612.74","price_btc":"0.010138","percent_change_24h":"0.17","percent_change_1h":"-0.10","percent_change_7d":"2.69","market_cap_usd":"85285786141.45","volume24":361092859.9895016,"csupply":"139186427.32","msupply":"200000000"}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
     <title>USD Coin (USDC) - $1.00</title>
     <link>https://www.coinlore.com/coin/usd-coin</link>
-    <description>Price: $1.00 | 24h Change: +0.00% | 1h Change: 0.00% | Market Cap: $74,043,048,022.46 ||JSON:{"rank":5,"price_usd":"1.00","price_btc":"0.000017","percent_change_24h":"0.00","percent_change_1h":"0.00","percent_change_7d":"0.02","market_cap_usd":"74043048022.46","volume24":6102612023.104202,"csupply":"73979327162.30","msupply":""}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $1.00 | 24h Change: +0.00% | 1h Change: 0.00% | Market Cap: $74,042,209,590.09 ||JSON:{"rank":5,"price_usd":"1.00","price_btc":"0.000017","percent_change_24h":"0.00","percent_change_1h":"0.00","percent_change_7d":"0.01","market_cap_usd":"74042209590.09","volume24":6073536587.95422,"csupply":"73979327162.30","msupply":""}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
     <title>XRP (XRP) - $1.01</title>
     <link>https://www.coinlore.com/coin/ripple</link>
-    <description>Price: $1.01 | 24h Change: -0.59% | 1h Change: -0.12% | Market Cap: $60,496,212,445.99 ||JSON:{"rank":6,"price_usd":"1.01","price_btc":"0.000017","percent_change_24h":"-0.59","percent_change_1h":"-0.12","percent_change_7d":"-5.52","market_cap_usd":"60496212445.99","volume24":788452504.672462,"csupply":"59777241479.00","msupply":"100000000000"}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $1.01 | 24h Change: -1.08% | 1h Change: -0.14% | Market Cap: $60,393,226,026.69 ||JSON:{"rank":6,"price_usd":"1.01","price_btc":"0.000017","percent_change_24h":"-1.08","percent_change_1h":"-0.14","percent_change_7d":"-5.41","market_cap_usd":"60393226026.69","volume24":783634310.3689,"csupply":"59777241479.00","msupply":"100000000000"}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>Solana (SOL) - $76.19</title>
+    <title>Solana (SOL) - $75.96</title>
     <link>https://www.coinlore.com/coin/solana</link>
-    <description>Price: $76.19 | 24h Change: -0.04% | 1h Change: -0.30% | Market Cap: $41,382,406,359.95 ||JSON:{"rank":7,"price_usd":"76.19","price_btc":"0.001258","percent_change_24h":"-0.04","percent_change_1h":"-0.30","percent_change_7d":"2.33","market_cap_usd":"41382406359.95","volume24":1166982785.8909128,"csupply":"543155320.58","msupply":""}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $75.96 | 24h Change: -0.59% | 1h Change: -0.40% | Market Cap: $41,260,638,179.28 ||JSON:{"rank":7,"price_usd":"75.96","price_btc":"0.001257","percent_change_24h":"-0.59","percent_change_1h":"-0.40","percent_change_7d":"2.27","market_cap_usd":"41260638179.28","volume24":1179020150.2715821,"csupply":"543155320.58","msupply":""}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
     <title>TRON (TRX) - $0.34</title>
     <link>https://www.coinlore.com/coin/tron</link>
-    <description>Price: $0.34 | 24h Change: +0.01% | 1h Change: -0.23% | Market Cap: $31,843,777,969.77 ||JSON:{"rank":8,"price_usd":"0.336380","price_btc":"0.000006","percent_change_24h":"0.01","percent_change_1h":"-0.23","percent_change_7d":"2.55","market_cap_usd":"31843777969.77","volume24":288748113.2675352,"csupply":"94666134895.32","msupply":""}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $0.34 | 24h Change: -0.32% | 1h Change: -0.42% | Market Cap: $31,772,533,312.91 ||JSON:{"rank":8,"price_usd":"0.335627","price_btc":"0.000006","percent_change_24h":"-0.32","percent_change_1h":"-0.42","percent_change_7d":"2.34","market_cap_usd":"31772533312.91","volume24":292470533.0732459,"csupply":"94666134895.32","msupply":""}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>Hyperliquid (HYPE) - $56.96</title>
+    <title>Hyperliquid (HYPE) - $56.98</title>
     <link>https://www.coinlore.com/coin/hyperliquid</link>
-    <description>Price: $56.96 | 24h Change: +3.61% | 1h Change: -0.81% | Market Cap: $19,020,281,990.26 ||JSON:{"rank":9,"price_usd":"56.96","price_btc":"0.000940","percent_change_24h":"3.61","percent_change_1h":"-0.81","percent_change_7d":"-0.38","market_cap_usd":"19020281990.26","volume24":238626952.8004629,"csupply":"333928180.00","msupply":"1000000000"}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $56.98 | 24h Change: +3.54% | 1h Change: -0.32% | Market Cap: $19,027,208,053.57 ||JSON:{"rank":9,"price_usd":"56.98","price_btc":"0.000943","percent_change_24h":"3.54","percent_change_1h":"-0.32","percent_change_7d":"0.17","market_cap_usd":"19027208053.57","volume24":234255075.9936141,"csupply":"333928180.00","msupply":"1000000000"}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>Staked Ether (STETH) - $1,890.37</title>
+    <title>Staked Ether (STETH) - $1,883.17</title>
     <link>https://www.coinlore.com/coin/staked-ether</link>
-    <description>Price: $1,890.37 | 24h Change: -0.04% | 1h Change: -0.30% | Market Cap: $16,165,890,667.43 ||JSON:{"rank":10,"price_usd":"1890.37","price_btc":"0.031204","percent_change_24h":"-0.04","percent_change_1h":"-0.30","percent_change_7d":"-1.55","market_cap_usd":"16165890667.43","volume24":7144786.184881136,"csupply":"8551695.16","msupply":"9901295"}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $1,883.17 | 24h Change: -0.53% | 1h Change: -0.54% | Market Cap: $16,104,285,363.8 ||JSON:{"rank":10,"price_usd":"1883.17","price_btc":"0.031157","percent_change_24h":"-0.53","percent_change_1h":"-0.54","percent_change_7d":"-1.52","market_cap_usd":"16104285363.80","volume24":7132034.154081646,"csupply":"8551695.16","msupply":"9901295"}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
     <title>Ethena USDe (USDe) - $1.00</title>
     <link>https://www.coinlore.com/coin/ethena-usde</link>
-    <description>Price: $1.00 | 24h Change: +0.01% | 1h Change: 0.00% | Market Cap: $14,084,425,614.55 ||JSON:{"rank":11,"price_usd":"1.00","price_btc":"0.000017","percent_change_24h":"0.01","percent_change_1h":"0.00","percent_change_7d":"0.01","market_cap_usd":"14084425614.55","volume24":4619366.702909605,"csupply":"14075952011.93","msupply":null}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $1.00 | 24h Change: +0.01% | 1h Change: 0.00% | Market Cap: $14,084,425,614.55 ||JSON:{"rank":11,"price_usd":"1.00","price_btc":"0.000017","percent_change_24h":"0.01","percent_change_1h":"0.00","percent_change_7d":"0.01","market_cap_usd":"14084425614.55","volume24":4875202.209777131,"csupply":"14075952011.93","msupply":null}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
     <title>Dogecoin (DOGE) - $0.07</title>
     <link>https://www.coinlore.com/coin/dogecoin</link>
-    <description>Price: $0.07 | 24h Change: -1.57% | 1h Change: -0.12% | Market Cap: $11,855,350,352.65 ||JSON:{"rank":12,"price_usd":"0.070500","price_btc":"0.000001","percent_change_24h":"-1.57","percent_change_1h":"-0.12","percent_change_7d":"0.09","market_cap_usd":"11855350352.65","volume24":380654344.2934254,"csupply":"168160693127.00","msupply":""}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $0.07 | 24h Change: -2.02% | 1h Change: -0.37% | Market Cap: $11,825,760,610.25 ||JSON:{"rank":12,"price_usd":"0.070324","price_btc":"0.000001","percent_change_24h":"-2.02","percent_change_1h":"-0.37","percent_change_7d":"0.12","market_cap_usd":"11825760610.25","volume24":378294014.7565738,"csupply":"168160693127.00","msupply":""}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>Zcash (ZEC) - $496.02</title>
+    <title>Zcash (ZEC) - $494.81</title>
     <link>https://www.coinlore.com/coin/zcash</link>
-    <description>Price: $496.02 | 24h Change: +4.41% | 1h Change: 0.18% | Market Cap: $8,048,642,310.03 ||JSON:{"rank":13,"price_usd":"496.02","price_btc":"0.008188","percent_change_24h":"4.41","percent_change_1h":"0.18","percent_change_7d":"-4.13","market_cap_usd":"8048642310.03","volume24":313579476.83671945,"csupply":"16226349.42","msupply":"21000000"}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $494.81 | 24h Change: +3.56% | 1h Change: -0.24% | Market Cap: $8,028,997,928.33 ||JSON:{"rank":13,"price_usd":"494.81","price_btc":"0.008187","percent_change_24h":"3.56","percent_change_1h":"-0.24","percent_change_7d":"-4.12","market_cap_usd":"8028997928.33","volume24":309452374.71803254,"csupply":"16226349.42","msupply":"21000000"}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>Wrapped Bitcoin (WBTC) - $62,546.33</title>
+    <title>Wrapped Bitcoin (WBTC) - $62,432.52</title>
     <link>https://www.coinlore.com/coin/wrapped-bitcoin</link>
-    <description>Price: $62,546.33 | 24h Change: -0.51% | 1h Change: -0.17% | Market Cap: $7,968,652,712.45 ||JSON:{"rank":14,"price_usd":"62546.33","price_btc":"1.03","percent_change_24h":"-0.51","percent_change_1h":"-0.17","percent_change_7d":"-3.36","market_cap_usd":"7968652712.45","volume24":22054666.963537347,"csupply":"127404.60","msupply":""}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $62,432.52 | 24h Change: -0.81% | 1h Change: -0.50% | Market Cap: $7,954,152,953.98 ||JSON:{"rank":14,"price_usd":"62432.52","price_btc":"1.03","percent_change_24h":"-0.81","percent_change_1h":"-0.50","percent_change_7d":"-3.43","market_cap_usd":"7954152953.98","volume24":22220501.986146726,"csupply":"127404.60","msupply":""}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>Monero (XMR) - $403.27</title>
+    <title>Monero (XMR) - $404.96</title>
     <link>https://www.coinlore.com/coin/monero</link>
-    <description>Price: $403.27 | 24h Change: +1.62% | 1h Change: 1.29% | Market Cap: $7,438,944,096.58 ||JSON:{"rank":15,"price_usd":"403.27","price_btc":"0.006657","percent_change_24h":"1.62","percent_change_1h":"1.29","percent_change_7d":"11.37","market_cap_usd":"7438944096.58","volume24":99445753.15174492,"csupply":"18446744.07","msupply":""}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $404.96 | 24h Change: +1.71% | 1h Change: 1.05% | Market Cap: $7,470,283,501.52 ||JSON:{"rank":15,"price_usd":"404.96","price_btc":"0.006700","percent_change_24h":"1.71","percent_change_1h":"1.05","percent_change_7d":"11.84","market_cap_usd":"7470283501.52","volume24":100075340.1209836,"csupply":"18446744.07","msupply":""}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>Wrapped stETH (WSTETH) - $2,345.99</title>
+    <title>Wrapped stETH (WSTETH) - $2,338.70</title>
     <link>https://www.coinlore.com/coin/wrapped-steth</link>
-    <description>Price: $2,345.99 | 24h Change: -0.09% | 1h Change: -0.15% | Market Cap: $7,356,148,406.02 ||JSON:{"rank":16,"price_usd":"2345.99","price_btc":"0.038725","percent_change_24h":"-0.09","percent_change_1h":"-0.15","percent_change_7d":"-1.54","market_cap_usd":"7356148406.02","volume24":5748576.137892339,"csupply":"3135632.46","msupply":"3458217"}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $2,338.70 | 24h Change: -0.64% | 1h Change: -0.56% | Market Cap: $7,333,289,494.47 ||JSON:{"rank":16,"price_usd":"2338.70","price_btc":"0.038694","percent_change_24h":"-0.64","percent_change_1h":"-0.56","percent_change_7d":"-1.44","market_cap_usd":"7333289494.47","volume24":5734698.445612756,"csupply":"3135632.46","msupply":"3458217"}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>Wrapped Beacon ETH (WBETH) - $2,087.12</title>
+    <title>Wrapped Beacon ETH (WBETH) - $2,080.07</title>
     <link>https://www.coinlore.com/coin/wrapped-beacon-eth</link>
-    <description>Price: $2,087.12 | 24h Change: -0.03% | 1h Change: -0.29% | Market Cap: $6,812,771,869.11 ||JSON:{"rank":17,"price_usd":"2087.12","price_btc":"0.034452","percent_change_24h":"-0.03","percent_change_1h":"-0.29","percent_change_7d":"-1.42","market_cap_usd":"6812771869.11","volume24":1433593.1271180115,"csupply":"3264194.31","msupply":"3264194.3137504"}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $2,080.07 | 24h Change: -0.64% | 1h Change: -0.52% | Market Cap: $6,789,752,618.19 ||JSON:{"rank":17,"price_usd":"2080.07","price_btc":"0.034415","percent_change_24h":"-0.64","percent_change_1h":"-0.52","percent_change_7d":"-1.31","market_cap_usd":"6789752618.19","volume24":1428214.4624677857,"csupply":"3264194.31","msupply":"3264194.3137504"}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
     <title>Cardano (ADA) - $0.19</title>
     <link>https://www.coinlore.com/coin/cardano</link>
-    <description>Price: $0.19 | 24h Change: +0.18% | 1h Change: 0.43% | Market Cap: $6,657,420,729.96 ||JSON:{"rank":18,"price_usd":"0.185959","price_btc":"0.000003","percent_change_24h":"0.18","percent_change_1h":"0.43","percent_change_7d":"-2.38","market_cap_usd":"6657420729.96","volume24":191242074.49943328,"csupply":"35800453490.39","msupply":"45000000000"}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $0.19 | 24h Change: -0.18% | 1h Change: -0.14% | Market Cap: $6,639,510,884.58 ||JSON:{"rank":18,"price_usd":"0.185459","price_btc":"0.000003","percent_change_24h":"-0.18","percent_change_1h":"-0.14","percent_change_7d":"-2.91","market_cap_usd":"6639510884.58","volume24":193418800.33056968,"csupply":"35800453490.39","msupply":"45000000000"}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>WETH (WETH) - $1,890.46</title>
+    <title>WETH (WETH) - $1,890.12</title>
     <link>https://www.coinlore.com/coin/weth</link>
-    <description>Price: $1,890.46 | 24h Change: +0.04% | 1h Change: 0.14% | Market Cap: $6,380,893,229.81 ||JSON:{"rank":19,"price_usd":"1890.46","price_btc":"0.031206","percent_change_24h":"0.04","percent_change_1h":"0.14","percent_change_7d":"-1.66","market_cap_usd":"6380893229.81","volume24":6319394.355086927,"csupply":"3375317.59","msupply":""}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $1,890.12 | 24h Change: +0.07% | 1h Change: 0.12% | Market Cap: $6,379,761,257.05 ||JSON:{"rank":19,"price_usd":"1890.12","price_btc":"0.031272","percent_change_24h":"0.07","percent_change_1h":"0.12","percent_change_7d":"-1.20","market_cap_usd":"6379761257.05","volume24":6716472.356297024,"csupply":"3375317.59","msupply":""}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
   <item>
-    <title>ChainLink (LINK) - $8.76</title>
+    <title>ChainLink (LINK) - $8.70</title>
     <link>https://www.coinlore.com/coin/chainlink</link>
-    <description>Price: $8.76 | 24h Change: +0.12% | 1h Change: -0.02% | Market Cap: $5,939,999,252.59 ||JSON:{"rank":20,"price_usd":"8.76","price_btc":"0.000145","percent_change_24h":"0.12","percent_change_1h":"-0.02","percent_change_7d":"6.77","market_cap_usd":"5939999252.59","volume24":192515582.37768066,"csupply":"678099970.45","msupply":"1000000000"}</description>
-    <pubDate>Thu, 13 Aug 2026 08:58:02 GMT</pubDate>
+    <description>Price: $8.70 | 24h Change: -0.54% | 1h Change: -0.44% | Market Cap: $5,902,417,213.54 ||JSON:{"rank":20,"price_usd":"8.70","price_btc":"0.000144","percent_change_24h":"-0.54","percent_change_1h":"-0.44","percent_change_7d":"6.46","market_cap_usd":"5902417213.54","volume24":190017834.45866424,"csupply":"678099970.45","msupply":"1000000000"}</description>
+    <pubDate>Thu, 13 Aug 2026 09:26:39 GMT</pubDate>
   </item>
 </channel>
 </rss>
+<!-- Last fetched: Thu, 13 Aug 2026 09:26:39 GMT -->

@@ -57,7 +57,28 @@ async function run() {
   for (const source of newsSources) {
     console.log(`Fetching ${source.id} from ${source.url}...`);
     try {
-      const xml = await fetchUrl(source.url);
+      let xml = "";
+      try {
+        xml = await fetchUrl(source.url);
+      } catch (directErr) {
+        console.warn(`Direct fetch failed for ${source.id}: ${directErr.message}. Trying proxy...`);
+        const proxies = [
+          `https://corsproxy.io/?url=${encodeURIComponent(source.url)}`,
+          `https://api.allorigins.win/raw?url=${encodeURIComponent(source.url)}`
+        ];
+        for (const proxyUrl of proxies) {
+          try {
+            xml = await fetchUrl(proxyUrl);
+            if (xml && xml.trim().length > 0) {
+              console.log(`Successfully fetched ${source.id} via proxy.`);
+              break;
+            }
+          } catch (proxyErr) {
+            console.warn(`Proxy fetch failed: ${proxyErr.message}`);
+          }
+        }
+      }
+
       if (xml && xml.trim().length > 0) {
         const filePath = path.join(destDir, `${source.id}.xml`);
         const xmlWithTimestamp = xml.trim() + `\n<!-- Last fetched: ${new Date().toUTCString()} -->`;
