@@ -60,7 +60,8 @@ async function run() {
       const xml = await fetchUrl(source.url);
       if (xml && xml.trim().length > 0) {
         const filePath = path.join(destDir, `${source.id}.xml`);
-        fs.writeFileSync(filePath, xml, 'utf8');
+        const xmlWithTimestamp = xml.trim() + `\n<!-- Last fetched: ${new Date().toUTCString()} -->`;
+        fs.writeFileSync(filePath, xmlWithTimestamp, 'utf8');
         console.log(`Saved ${source.id}.xml successfully.`);
       } else {
         console.warn(`Empty response for ${source.id}`);
@@ -111,7 +112,7 @@ async function run() {
   </item>
 `;
     }
-    xml += `</channel>\n</rss>`;
+    xml += `</channel>\n</rss>\n<!-- Last fetched: ${new Date().toUTCString()} -->`;
     fs.writeFileSync(path.join(destDir, 'crypto.xml'), xml, 'utf8');
     console.log("Saved crypto.xml successfully.");
   } catch (err) {
