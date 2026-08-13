@@ -11,6 +11,8 @@ import NewsListBySource from './pages/NewsListBySource.jsx'
 import Category from './pages/Category.jsx'
 import Crypto from './pages/Crypto.jsx'
 import CryptoDetail from './pages/CryptoDetail.jsx'
+import Weather from './pages/Weather.jsx'
+import WeatherDetail from './pages/WeatherDetail.jsx'
 
 function AppWrapper() {
   const [showSlider, setShowSlider] = useState(false);
@@ -81,6 +83,8 @@ function AppWrapper() {
         <Route path='news/:id' element={<NewsDetail />} />
         <Route path='crypto' element={<Crypto />} />
         <Route path='crypto-detail/:id' element={<CryptoDetail />} />
+        <Route path='weather' element={<Weather />} />
+        <Route path='weather-detail/:name' element={<WeatherDetail />} />
         <Route path='settings' element={<Settings />} />
         <Route path='about' element={<About />} />
       </Routes>

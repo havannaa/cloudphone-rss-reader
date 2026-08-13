@@ -9,7 +9,7 @@ import { withTranslation } from 'react-i18next'
 import { newsSources, fetchFeed } from '../utils/newsData'
 import './Home.css'
 
-const categoriesList = ['Bangladesh', 'India', 'Middle East', 'World News', 'Cryptocurrency'];
+const categoriesList = ['Bangladesh', 'India', 'Middle East', 'World News', 'Cryptocurrency', 'Weather'];
 
 function AppComponent() {
   const navigate = useNavigate();
@@ -211,9 +211,12 @@ function AppComponent() {
             {categoriesList.map((country, idx) => {
               const count = newsSources.filter(s => s.country === country).length;
               const isCrypto = country === 'Cryptocurrency';
+              const isWeather = country === 'Weather';
               const targetRoute = isCrypto 
                 ? '/crypto' 
-                : `/category/${encodeURIComponent(country)}`;
+                : isWeather
+                  ? '/weather'
+                  : `/category/${encodeURIComponent(country)}`;
               return (
                 <Link
                   key={country}
@@ -233,7 +236,9 @@ function AppComponent() {
                   <span style={{ fontSize: '7.5pt', color: '#64748b', marginTop: '4px', textTransform: 'none' }}>
                     {isCrypto 
                       ? t('Real-time Coin Tickers') 
-                      : `${count} ${t('news sources')}`}
+                      : isWeather
+                        ? t('District weather reports')
+                        : `${count} ${t('news sources')}`}
                   </span>
                 </Link>
               );
