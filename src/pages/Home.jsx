@@ -18,7 +18,16 @@ function AppComponent() {
 
   // States
   const [menuVisible, setMenuVisible] = useState(location.hash.includes('#menu'));
-  const [loading, setLoading] = useState(() => !sessionStorage.getItem('feeds_preloaded_once'));
+  const [loading, setLoading] = useState(() => {
+    const cached = sessionStorage.getItem('all_articles');
+    if (!cached) return true;
+    try {
+      const parsed = JSON.parse(cached);
+      return Object.keys(parsed).length < newsSources.length;
+    } catch (e) {
+      return true;
+    }
+  });
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [currentLoadingSource, setCurrentLoadingSource] = useState('');
   const [completedFeedsCount, setCompletedFeedsCount] = useState(0);
@@ -156,8 +165,20 @@ function AppComponent() {
   };
 
   useEffect(() => {
-    const preloadedOnce = sessionStorage.getItem('feeds_preloaded_once');
-    if (!preloadedOnce) {
+    const cached = sessionStorage.getItem('all_articles');
+    let needsPreload = !cached;
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        if (Object.keys(parsed).length < newsSources.length) {
+          needsPreload = true;
+        }
+      } catch (e) {
+        needsPreload = true;
+      }
+    }
+
+    if (needsPreload) {
       preloadAllFeeds(false);
     } else if (!sessionStorage.getItem('last_update_timestamp')) {
       sessionStorage.setItem('last_update_timestamp', Date.now().toString());
