@@ -113,6 +113,68 @@ function AppComponent() {
     }
   };
 
+  const preloadBangladeshFirst = async () => {
+    setLoading(true);
+    setLoadingProgress(0);
+
+    sessionStorage.removeItem('all_articles');
+    sessionStorage.removeItem('all_errors');
+
+    const bangladeshSources = newsSources.filter(s => s.country === 'Bangladesh');
+    const remainingSources = newsSources.filter(s => s.country !== 'Bangladesh');
+
+    const total = bangladeshSources.length;
+    let completed = 0;
+    const newArticlesMap = {};
+    const newErrorsMap = {};
+
+    // 1. Fetch Bangladesh feeds interactively (with spinner)
+    await Promise.all(
+      bangladeshSources.map(async (source) => {
+        try {
+          const data = await fetchFeed(source.id, false);
+          newArticlesMap[source.id] = data;
+        } catch (err) {
+          console.error(`Failed to load Bangladesh source: ${source.id}`, err);
+          newErrorsMap[source.id] = err.message;
+        } finally {
+          completed++;
+          setLoadingProgress(Math.round((completed / total) * 100));
+        }
+      })
+    );
+
+    sessionStorage.setItem('all_articles', JSON.stringify(newArticlesMap));
+    sessionStorage.setItem('all_errors', JSON.stringify(newErrorsMap));
+    sessionStorage.setItem('last_update_timestamp', Date.now().toString());
+
+    // User is now free to navigate
+    setLoading(false);
+
+    // 2. Fetch remaining categories asynchronously in the background
+    (async () => {
+      for (const source of remainingSources) {
+        try {
+          const data = await fetchFeed(source.id, false);
+          const currentArticles = JSON.parse(sessionStorage.getItem('all_articles') || '{}');
+          const currentErrors = JSON.parse(sessionStorage.getItem('all_errors') || '{}');
+
+          currentArticles[source.id] = data;
+          delete currentErrors[source.id];
+
+          sessionStorage.setItem('all_articles', JSON.stringify(currentArticles));
+          sessionStorage.setItem('all_errors', JSON.stringify(currentErrors));
+        } catch (err) {
+          console.error(`Background load failed for source: ${source.id}`, err);
+          const currentErrors = JSON.parse(sessionStorage.getItem('all_errors') || '{}');
+          currentErrors[source.id] = err.message;
+          sessionStorage.setItem('all_errors', JSON.stringify(currentErrors));
+        }
+      }
+      console.log("Background preloading of remaining categories completed.");
+    })();
+  };
+
   const preloadAllFeeds = async (forceRefetch = false) => {
     setLoading(true);
     setLoadingProgress(0);
@@ -160,7 +222,7 @@ function AppComponent() {
       }
     }
     if (needsPreload) {
-      preloadAllFeeds();
+      preloadBangladeshFirst();
     } else if (!sessionStorage.getItem('last_update_timestamp')) {
       sessionStorage.setItem('last_update_timestamp', Date.now().toString());
     }

@@ -30,19 +30,6 @@ export async function fetchFeed(sourceId, forceRefetch = false) {
   if (!source) throw new Error("Source not found");
 
   if (sourceId === 'crypto') {
-    if (!forceRefetch) {
-      try {
-        const staticUrl = `./feeds/crypto.xml`;
-        const response = await fetch(staticUrl);
-        if (response.ok) {
-          const xmlText = await response.text();
-          return parseRSS(xmlText, sourceId);
-        }
-      } catch (e) {
-        console.warn("Failed to load static crypto XML:", e);
-      }
-    }
-
     let jsonText = "";
     let errorMsg = "";
 
@@ -113,19 +100,16 @@ export async function fetchFeed(sourceId, forceRefetch = false) {
   let xmlText = "";
   let errorMsg = "";
 
-  // 1. Try static XML cache lookup first (only if forceRefetch is false)
-  if (!forceRefetch) {
-    try {
-      const staticUrl = `./feeds/${sourceId}.xml`;
-      const response = await fetch(staticUrl);
-      if (response.ok) {
-        xmlText = await response.text();
-      } else {
-        errorMsg = `Static fetch status: ${response.status}`;
-      }
-    } catch (e) {
-      errorMsg = `Static fetch error: ${e.message}`;
+  // 1. Try direct fetch first
+  try {
+    const response = await fetch(source.url);
+    if (response.ok) {
+      xmlText = await response.text();
+    } else {
+      errorMsg = `Direct fetch status: ${response.status}`;
     }
+  } catch (e) {
+    errorMsg = `Direct fetch error: ${e.message}`;
   }
 
   // 2. Fallback to live CORS proxies if static fetch was disabled or failed
