@@ -31,5 +31,6 @@ jobs:
             echo "No changes in feeds."
           else
             git commit -m "Automated feed update"
+            git pull origin main --rebase -X theirs
             git push origin main
           fi
